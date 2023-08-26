@@ -3,9 +3,9 @@ import {
     Flex,
     Grid,
 } from "@aws-amplify/ui-react";
-import Thermostat, {ThermostatProps} from "../components/thermostat";
+import Thermostat from "../components/thermostat";
 import Header from "../components/header";
-import CurrentTime from "../components/currentTime";
+import CurrentStats from "../components/currentStats";
 
 const Dashboard = () => {
 
@@ -24,7 +24,7 @@ const Dashboard = () => {
             <Header
                 username={"primaryOwner"}
             />
-            <CurrentTime />
+            <CurrentStats />
             <Flex
                 direction="row"
                 wrap="nowrap"

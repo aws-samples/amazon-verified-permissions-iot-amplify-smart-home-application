@@ -8,20 +8,20 @@ import awsconfig from './aws-exports';
 import Dashboard from "./pages/dashboard";
 Amplify.configure(awsconfig);
 
-// export function App({ signOut, user }: WithAuthenticatorProps) {
-//   return (
-//     <>
-//       <h1>Hello {user?.username}</h1>
-//       <button onClick={signOut}>Sign out</button>
-//     </>
-//   );
-// }
-//
-// export default withAuthenticator(App);
+function App({ signOut, user }: WithAuthenticatorProps) {
+  return (
+    <>
+      <Dashboard />
 
-const App = () => {
-    return <Dashboard />
+    </>
+  );
 }
 
+export default withAuthenticator(App);
 
-export default App;
+// const App = () => {
+//     return <Dashboard />
+// }
+
+
+// export default App;

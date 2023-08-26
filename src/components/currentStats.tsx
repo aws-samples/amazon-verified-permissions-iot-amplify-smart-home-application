@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import {Card, Flex, Heading, Icon, SelectField, TextField} from "@aws-amplify/ui-react";
-import {FaSnowflake} from "react-icons/fa";
-import {BsFire} from "react-icons/bs";
+import {Card, Flex, SelectField, TextField} from "@aws-amplify/ui-react";
+// import {FaSnowflake} from "react-icons/fa";
+// import {BsFire} from "react-icons/bs";
 
 interface TemperatureIconProps {
     readonly temperature: number;
@@ -15,7 +15,7 @@ interface TemperatureIconProps {
 //     }
 // }
 
-const CurrentTime = () => {
+const CurrentStats = () => {
     const [meridianSelectedValue, setMeridianSelectedValue] = useState('');
     return (
         <Flex
@@ -26,7 +26,7 @@ const CurrentTime = () => {
             <Card>
                 <TextField
                     placeholder="72"
-                    label="Outside Temperature"
+                    label="Outside Temperature (F)"
                 />
             </Card>
             <Card>
@@ -49,4 +49,4 @@ const CurrentTime = () => {
     )
 }
 
-export default CurrentTime;
+export default CurrentStats;

@@ -12,9 +12,19 @@ import {
     View
 } from "@aws-amplify/ui-react";
 import {BsCaretDown} from "react-icons/bs"
+import { Auth } from 'aws-amplify';
+
 
 export interface HeaderProps {
     readonly username: string;
+}
+
+async function signOut() {
+  try {
+    await Auth.signOut();
+  } catch (error) {
+    console.log('error signing out: ', error);
+  }
 }
 
 
@@ -58,8 +68,7 @@ const Header = ({ username }: HeaderProps ) => {
                     }
                 >
                     <Divider/>
-                    <MenuItem onClick={() => alert('Signed out')}>
-                        Log out
+                    <MenuItem onClick={() => {signOut()}}>
                     </MenuItem>
                 </Menu>
             </Card>

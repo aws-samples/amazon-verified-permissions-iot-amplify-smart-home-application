@@ -69,6 +69,7 @@ const Header = ({ username }: HeaderProps ) => {
                 >
                     <Divider/>
                     <MenuItem onClick={() => {signOut()}}>
+                        Log out
                     </MenuItem>
                 </Menu>
             </Card>

@@ -32,7 +32,7 @@ const Thermostat = (props: ThermostatProps) => {
     const {tokens} = useTheme();
 
     return (
-        <Card>
+        <Card variation="elevated">
             <Collection
                 items={items}
                 type="list"

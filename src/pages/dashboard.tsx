@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect, useContext} from "react";
 import {
     Flex,
     Grid,
 } from "@aws-amplify/ui-react";
 import Thermostat from "../components/thermostat";
 import Header from "../components/header";
-import CurrentStats from "../components/currentStats";
+import CurrentValues from "../components/currentValues";
+import InvitationLink from "../components/invitationLink";
 
-const Dashboard = () => {
+interface DashboardProps {
+}
+
+const Dashboard = (props: DashboardProps) => {
+
 
     // get this from api
     const items = [{
@@ -24,7 +29,7 @@ const Dashboard = () => {
             <Header
                 username={"primaryOwner"}
             />
-            <CurrentStats />
+            
             <Flex
                 direction="row"
                 wrap="nowrap"
@@ -33,7 +38,11 @@ const Dashboard = () => {
                 <Thermostat
                     items={items}
                 />
+                <InvitationLink />
+                <CurrentValues />
+                
             </Flex>
+            
 
         </Grid>
     )

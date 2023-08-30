@@ -1,27 +1,47 @@
-import React from "react";
 import { Amplify } from 'aws-amplify';
-import type { WithAuthenticatorProps } from '@aws-amplify/ui-react';
-import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+import {
+  Authenticator,
+  View,
+  Button,
+  useAuthenticator,
+  Flex,
+  Heading,
+  Card,
+} from '@aws-amplify/ui-react';
+import awsExports from './aws-exports';
+import Dashboard from './pages/dashboard';
+Amplify.configure(awsExports);
 
-import awsconfig from './aws-exports';
-import Dashboard from "./pages/dashboard";
-Amplify.configure(awsconfig);
+export default function App() {
 
-function App({ signOut, user }: WithAuthenticatorProps) {
+  const components = {
+    SignIn: {
+      Header() {
+        return (
+          <Heading level={2} textAlign="center">
+            AWS IoT AVP Demo Dashboard
+          </Heading>
+        )
+      },
+      Footer() {
+        const { toResetPassword } = useAuthenticator();
+        return (
+          <div />
+        );
+      },
+    },
+  };
+
   return (
-    <>
-      <Dashboard />
 
-    </>
+    <Flex justifyContent={"center"} display={"flex"} alignItems={"center"}>
+      <Card>
+        <Authenticator hideSignUp components={components}>
+          <Dashboard />
+        </Authenticator>
+      </Card>
+    </Flex>
+
   );
 }
-
-export default withAuthenticator(App);
-
-// const App = () => {
-//     return <Dashboard />
-// }
-
-
-// export default App;

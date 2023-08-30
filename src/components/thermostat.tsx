@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 import {
     Badge,
@@ -7,7 +7,9 @@ import {
     Collection,
     Divider,
     Flex,
-    Heading, Icon, SelectField,
+    Heading, 
+    Icon, 
+    SelectField,
     SliderField, SwitchField, useTheme,
     View
 } from "@aws-amplify/ui-react";
@@ -23,13 +25,36 @@ export type ThermostatProps = {
     readonly items: ThermostatItem[];
 };
 
+interface DeviceAPICallProps {
+    deviceID: string;
+
+}
+
+const { REACT_APP_API_URI } = process.env;
+
+
+const makeDeviceAPICall = ({ deviceID }: DeviceAPICallProps) => {
+    fetch(`${REACT_APP_API_URI}/control/${deviceID}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+
+        }).catch(e => {
+            console.log(e);
+
+        }).catch(e => {
+            console.log(e);
+        });
+}
+
+
 
 const Thermostat = (props: ThermostatProps) => {
 
-    const {items} = props;
+    const { items } = props;
     const [selectedTemperature, setSelectedTemperature] = useState();
     const [selectedModeValue, setSelectedModeValue] = useState("Auto");
-    const {tokens} = useTheme();
+    const { tokens } = useTheme();
 
     return (
         <Card variation="elevated">
@@ -63,7 +88,7 @@ const Thermostat = (props: ThermostatProps) => {
                         </Flex>
 
                         <View padding="xs">
-                            <Divider padding="xs"/>
+                            <Divider padding="xs" />
                             <SliderField
                                 label="Set temperature"
                                 onChange={selectedTemperature}

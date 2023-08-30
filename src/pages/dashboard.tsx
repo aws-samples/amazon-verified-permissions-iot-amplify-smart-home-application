@@ -1,4 +1,4 @@
-import React, { useEffect, useContext} from "react";
+import React, { useEffect, useContext } from "react";
 import {
     Flex,
     Grid,
@@ -8,18 +8,22 @@ import Header from "../components/header";
 import CurrentValues from "../components/currentValues";
 import InvitationLink from "../components/invitationLink";
 
+
 interface DashboardProps {
 }
+
+
+
 
 const Dashboard = (props: DashboardProps) => {
 
 
     // get this from api
     const items = [{
-            name: 'thermostat1',
-            currentTemperature: 72,
-            tags: ['Home1', 'Smart Thermostat'],
-        }];
+        name: 'thermostat1',
+        currentTemperature: 72,
+        tags: ['Home1', 'Smart Thermostat'],
+    }];
 
     return (
         <Grid
@@ -29,7 +33,7 @@ const Dashboard = (props: DashboardProps) => {
             <Header
                 username={"primaryOwner"}
             />
-            
+
             <Flex
                 direction="row"
                 wrap="nowrap"
@@ -40,9 +44,9 @@ const Dashboard = (props: DashboardProps) => {
                 />
                 <InvitationLink />
                 <CurrentValues />
-                
+
             </Flex>
-            
+
 
         </Grid>
     )

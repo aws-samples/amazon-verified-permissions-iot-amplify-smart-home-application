@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     Card,
     Divider,
@@ -27,8 +27,22 @@ async function signOut() {
   }
 }
 
+async function getCurrentUser() {
+    const user = await Auth.currentAuthenticatedUser();
+    return user;
+}
 
-const Header = ({ username }: HeaderProps ) => {
+
+const Header = (props: HeaderProps ) => {
+
+    const [currentUsername, setCurrentUsername] = React.useState("");
+
+    useEffect(() => {
+        getCurrentUser().then(user => {
+            setCurrentUsername(user.username);
+        });
+    },[])
+
     return (
         <Flex
             direction="row"
@@ -57,7 +71,7 @@ const Header = ({ username }: HeaderProps ) => {
                         <MenuButton variation="primary" size="large" width="100%">
                             <Flex direction="row" gap="1rem">
                                 <View>
-                                    Logged in as {username}
+                                    Logged in as {currentUsername}
                                 </View>
                                 <View>
                                     <Icon as={BsCaretDown}/>

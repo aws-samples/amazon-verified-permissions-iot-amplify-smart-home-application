@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/control/{deviceId}": {
+      "name": "/control/{deviceId}",
+      "lambdaFunction": "DeviceAPIHandlerFn",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

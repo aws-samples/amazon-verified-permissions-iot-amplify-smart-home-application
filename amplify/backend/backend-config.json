@@ -1,6 +1,6 @@
 {
   "api": {
-    "awsiotavp": {
+    "awsiotavpapi": {
       "dependsOn": [
         {
           "attributes": [
@@ -8,7 +8,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "AWSIoTAVPHandlerFn"
+          "resourceName": "DeviceAPIHandlerFn"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -42,7 +42,7 @@
     }
   },
   "function": {
-    "AWSIoTAVPHandlerFn": {
+    "DeviceAPIHandlerFn": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -56,19 +56,19 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_AWSIoTAVPHandlerFn_deploymentBucketName": {
+    "AMPLIFY_function_DeviceAPIHandlerFn_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "AWSIoTAVPHandlerFn"
+          "resourceName": "DeviceAPIHandlerFn"
         }
       ]
     },
-    "AMPLIFY_function_AWSIoTAVPHandlerFn_s3Key": {
+    "AMPLIFY_function_DeviceAPIHandlerFn_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "AWSIoTAVPHandlerFn"
+          "resourceName": "DeviceAPIHandlerFn"
         }
       ]
     },

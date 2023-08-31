@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
   "api": {
-    "awsiotavp": {
+    "awsiotavpapi": {
       "ApiId": "string",
       "ApiName": "string",
       "RootUrl": "string"
@@ -16,7 +16,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
-    "AWSIoTAVPHandlerFn": {
+    "DeviceAPIHandlerFn": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",

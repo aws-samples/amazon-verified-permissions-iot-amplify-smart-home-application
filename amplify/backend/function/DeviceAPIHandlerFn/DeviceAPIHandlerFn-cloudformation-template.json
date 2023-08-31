@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "AWSIoTAVPHandlerFn",
+            "DeviceAPIHandlerFn",
             {
               "Fn::Join": [
                 "",
                 [
-                  "AWSIoTAVPHandlerFn",
+                  "DeviceAPIHandlerFn",
                   "-",
                   {
                     "Ref": "env"
@@ -78,7 +78,7 @@
             "Arn"
           ]
         },
-        "Runtime": "python3.8",
+        "Runtime": "nodejs18.x",
         "Layers": [],
         "Timeout": 25
       }
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "awsiotavpwebappLambdaRolee8a10b0c",
+            "awsiotavpwebappLambdaRole5f8e8d02",
             {
               "Fn::Join": [
                 "",
                 [
-                  "awsiotavpwebappLambdaRolee8a10b0c",
+                  "awsiotavpwebappLambdaRole5f8e8d02",
                   "-",
                   {
                     "Ref": "env"

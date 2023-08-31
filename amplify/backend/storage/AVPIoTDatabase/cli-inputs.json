@@ -1,0 +1,10 @@
+{
+  "resourceName": "AVPIoTDatabase",
+  "tableName": "AVPIoTDatabase",
+  "partitionKey": {
+    "fieldName": "uid",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

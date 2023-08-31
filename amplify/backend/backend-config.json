@@ -16,19 +16,9 @@
     }
   },
   "auth": {
-    "awsiotavpauthn": {
+    "awsiotavpauth": {
       "customAuth": false,
-      "dependsOn": [
-        {
-          "attributes": [
-            "Arn",
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "awsiotavpauthnPostConfirmation",
-          "triggerProvider": "Cognito"
-        }
-      ],
+      "dependsOn": [],
       "frontendAuthConfig": {
         "mfaConfiguration": "OFF",
         "mfaTypes": [
@@ -53,11 +43,6 @@
   },
   "function": {
     "AWSIoTAVPHandlerFn": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "awsiotavpauthnPostConfirmation": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -87,22 +72,6 @@
         }
       ]
     },
-    "AMPLIFY_function_awsiotavpauthnPostConfirmation_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "awsiotavpauthnPostConfirmation"
-        }
-      ]
-    },
-    "AMPLIFY_function_awsiotavpauthnPostConfirmation_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "awsiotavpauthnPostConfirmation"
-        }
-      ]
-    },
     "AMPLIFY_hosting_amplifyhosting_appId": {
       "usedBy": [
         {
@@ -120,5 +89,10 @@
       ]
     }
   },
-  "storage": {}
+  "storage": {
+    "AVPIoTDatabase": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    }
+  }
 }

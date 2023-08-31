@@ -1,6 +1,10 @@
 [
   {
-    "Action": [],
-    "Resource": []
+    "Action": ["iot:*", "iotjobsdata:*"],
+    "Resource": ["*"]
+  },
+  {
+    "Action": ["verifiedpermissions:*"],
+    "Resource": ["*"]
   }
 ]

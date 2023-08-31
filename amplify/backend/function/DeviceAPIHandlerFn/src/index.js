@@ -7,7 +7,7 @@
 
 const jwt = require('jose');
 // import iot data plane client from aws-sdk
-const { IoTDataPlaneClient, UpdateThingShadowCommand } = require("@aws-sdk/client-iot-data-plane");
+const { IoTDataPlaneClient, UpdateThingShadowCommand, GetThingShadowCommand } = require("@aws-sdk/client-iot-data-plane");
 
 const REGION = "us-east-2";
 const IOTENDPOINT = "a2g7by657gx6jd-ats.iot.us-east-2.amazonaws.com"
@@ -49,15 +49,29 @@ const setTemperature = (deviceId, temperature, deviceMode, power) => {
 };
 
 
-const getTemperature = () => {
+const getTemperature = (deviceId) => {
     console.log("getTemperature");
+    
     // get data from device shadow
-
-
-    return {
-        temperature: "20",
-        humidity: "50"
+    const input = {
+        thingName: deviceId,
+        payload: JSON.stringify({})
     }
+    const command = new GetThingShadowCommand(input);
+    client.send(command).then(response => {
+        response.json()
+            .then(
+                res => {
+                    console.log(res);
+                    return res;
+                }
+            )
+            .catch(e => {
+                console.log("Unable to decode JSON coming from Shadow Read call");
+            })
+    
+    }).catch(e => console.log(e));
+    
 }
 
 

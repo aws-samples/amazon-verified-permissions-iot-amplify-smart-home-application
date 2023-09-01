@@ -7,6 +7,13 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/items": {
+      "name": "/items",
+      "lambdaFunction": "ItemsAPIHandlerFn",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

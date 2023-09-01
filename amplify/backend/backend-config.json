@@ -9,6 +9,14 @@
           ],
           "category": "function",
           "resourceName": "DeviceAPIHandlerFn"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "ItemsAPIHandlerFn"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -46,6 +54,11 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "ItemsAPIHandlerFn": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "hosting": {
@@ -69,6 +82,22 @@
         {
           "category": "function",
           "resourceName": "DeviceAPIHandlerFn"
+        }
+      ]
+    },
+    "AMPLIFY_function_ItemsAPIHandlerFn_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ItemsAPIHandlerFn"
+        }
+      ]
+    },
+    "AMPLIFY_function_ItemsAPIHandlerFn_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ItemsAPIHandlerFn"
         }
       ]
     },

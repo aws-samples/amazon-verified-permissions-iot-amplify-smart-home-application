@@ -1,0 +1,8 @@
+{
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "@aws-sdk/client-verifiedpermissions": "^3.399.0"
+  }
+}

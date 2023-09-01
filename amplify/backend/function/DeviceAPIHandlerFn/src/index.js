@@ -5,6 +5,7 @@
 
 import * as jwt from 'jsonwebtoken';
 import {IoTDataPlaneClient, UpdateThingShadowCommand, GetThingShadowCommand} from "@aws-sdk/client-iot-data-plane";
+import {permissionsCheck} from '/opt/nodejs/permissions.mjs';  // This comes from custom code in the layer
 
 const REGION= "us-east-2";
 const client = new IoTDataPlaneClient({region: REGION});

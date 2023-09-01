@@ -52,13 +52,36 @@
   "function": {
     "DeviceAPIHandlerFn": {
       "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "awsiotavpwebappAVPPermissionsLayer"
+        }
+      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
     "ItemsAPIHandlerFn": {
       "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "awsiotavpwebappAVPPermissionsLayer"
+        }
+      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "awsiotavpwebappAVPPermissionsLayer": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer"
     }
   },
   "hosting": {
@@ -98,6 +121,22 @@
         {
           "category": "function",
           "resourceName": "ItemsAPIHandlerFn"
+        }
+      ]
+    },
+    "AMPLIFY_function_awsiotavpwebappAVPPermissionsLayer_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "awsiotavpwebappAVPPermissionsLayer"
+        }
+      ]
+    },
+    "AMPLIFY_function_awsiotavpwebappAVPPermissionsLayer_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "awsiotavpwebappAVPPermissionsLayer"
         }
       ]
     },

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.398.0",
+    "@aws-sdk/client-iot-data-plane": "^3.398.0",
     "jsonwebtoken": "^9.0.2"
   }
 }

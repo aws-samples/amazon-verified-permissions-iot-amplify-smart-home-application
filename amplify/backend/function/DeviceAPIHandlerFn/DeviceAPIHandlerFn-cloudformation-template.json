@@ -15,6 +15,10 @@
     },
     "s3Key": {
       "Type": "String"
+    },
+    "functionawsiotavpwebappAVPPermissionsLayerArn": {
+      "Type": "String",
+      "Default": "functionawsiotavpwebappAVPPermissionsLayerArn"
     }
   },
   "Conditions": {
@@ -79,7 +83,11 @@
           ]
         },
         "Runtime": "nodejs18.x",
-        "Layers": [],
+        "Layers": [
+          {
+            "Ref": "functionawsiotavpwebappAVPPermissionsLayerArn"
+          }
+        ],
         "Timeout": 25
       }
     },

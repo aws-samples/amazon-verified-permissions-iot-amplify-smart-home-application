@@ -29,6 +29,9 @@ export type AmplifyDependentResourcesAttributes = {
       "LambdaExecutionRoleArn": "string",
       "Name": "string",
       "Region": "string"
+    },
+    "awsiotavpwebappAVPPermissionsLayer": {
+      "Arn": "string"
     }
   },
   "storage": {

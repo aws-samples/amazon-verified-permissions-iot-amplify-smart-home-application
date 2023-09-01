@@ -32,7 +32,7 @@ const ThermostatList = (props: ThermostatProps) => {
 
     const [currentTemperature, setCurrentTemperature] = useState(0);
     const [currentMode, setCurrentMode] = useState("Auto");
-    const [currentPower, setCurrentPower] = useState(true);
+    const [currentPower, setCurrentPower] = useState(false);
     const [tags, setTags] = useState<string[]>([]);
 
     const {tokens} = useTheme();
@@ -70,7 +70,7 @@ const ThermostatList = (props: ThermostatProps) => {
                         <View padding="xs">
                             <Divider padding="xs"/>
                             <SliderField
-                                label="Set temperature"
+                                label="Desired Temperature: "
                                 onChange={setSelectedTemperature}
                                 value={selectedTemperature}
                                 max={100}
@@ -87,15 +87,15 @@ const ThermostatList = (props: ThermostatProps) => {
                                     <option value="Cool">Cool</option>
                                 </SelectField>
                             </Card>
-                            <Card>
-                                <Button width={"100%"} variation={"primary"} colorTheme={"success"}>
-                                    Set values
-                                </Button>
-                            </Card>
+
                             <Card>
                                 <SwitchField
                                     label="Thermostat Power"
                                     trackCheckedColor={tokens.colors.green[60]}
+                                    isChecked={currentPower}
+                                    onChange={() => {
+                                        setCurrentPower(!currentPower)
+                                    }}
                                     defaultChecked={true}
                                 />
                             </Card>
@@ -111,6 +111,16 @@ const ThermostatList = (props: ThermostatProps) => {
                                             {badge}
                                         </Badge>
                                     ))}
+                                </Flex>
+                            </Card>
+                            <Card>
+                                <Flex direction={"column"} justifyContent={"space-between"}>
+                                    <Button width={"100%"} variation={"primary"} colorTheme={"success"}>
+                                        setTemperature
+                                    </Button>
+                                    <Button width={"100%"} variation={"primary"} colorTheme={"success"}>
+                                        getTemperature
+                                    </Button>
                                 </Flex>
                             </Card>
                         </View>

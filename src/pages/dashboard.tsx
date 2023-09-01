@@ -77,9 +77,11 @@ const Dashboard = (props: DashboardProps) => {
                 justifyContent={"space-between"}
                 gap="1rem"
             >
-                <ThermostatList
-                    items={items}
-                />
+                <Flex direction={"row"}>
+                    <ThermostatList
+                        items={items}
+                    />
+                </Flex>
 
                 <CurrentValues/>
 

@@ -1,22 +1,12 @@
-import React, { useState } from "react";
-import { Button, Card, Flex, Heading, SelectField, TextField } from "@aws-amplify/ui-react";
+import React, {useState} from "react";
+import {Button, Card, Flex, Heading, SelectField, TextField} from "@aws-amplify/ui-react";
+import {format as formatDate} from "date-fns";
 
-interface TemperatureIconProps {
-    readonly temperature: number;
-}
-
-// const TemperatureIcon = ({temperature}: TemperatureIconProps) => {
-//     if (temperature >= 80) {
-//         return <Icon color={"yellow.60"} as={BsFire} viewBox={{width: 300, height: 300}}/>
-//     } else if (temperature <= 69 ) {
-//         return <Icon color={"blue.80"} as={FaSnowflake} viewBox={{width: 300, height: 300}}/>
-//     }
-// }
 
 const CurrentValues = () => {
 
     const currentTimestamp = new Date();
-    const currentHour = currentTimestamp.getHours() % 12;
+    const currentHour = Number(formatDate(currentTimestamp, "h"));
     const currentMinute = currentTimestamp.getMinutes();
     const currentMeridian = currentTimestamp.getHours() >= 12 ? "PM" : "AM";
 
@@ -27,7 +17,9 @@ const CurrentValues = () => {
 
     return (
         <Card width={"40%"} variation="elevated">
-            <Heading level={2} margin={0} padding={0}>Current Values</Heading>
+            <Heading level={2} margin={0} padding={0}>World Settings</Heading>
+            <p>This is where we update the time of day and optionally the temperature of the outside world</p>
+
             <Flex
                 direction="column"
             >
@@ -41,25 +33,35 @@ const CurrentValues = () => {
                     />
                 </Card>
                 <Card>
-                    <Flex direction={"row"}>
-                        <TextField type={"number"} width={"20%"} label={"HH"} value={hourValue} onChange={(e) => setHourValue(Number(e.target.value))} />
-                        <TextField type={"number"} width={"20%"} label={"MM"} value={minutesValue} onChange={(e) => { setMinutesValue(Number(e.target.value)) }} />
-                        <SelectField
-                            label="AM/PM"
-                            value={meridianSelectedValue}
-                            onChange={(e) => setMeridianSelectedValue(e.target.value)}
-                        >
-                            <option value="AM">AM</option>
-                            <option value="PM">PM</option>
-                        </SelectField>
+                    <Flex direction={"column"}>
+                        <label>Set Time</label>
+                        <Flex direction={"row"}>
+                            <TextField type={"number"} width={"20%"} label={"HH"} value={hourValue}
+                                       onChange={(e) => setHourValue(Number(e.target.value))}/>
+                            <TextField type={"number"} width={"20%"} label={"MM"} value={minutesValue}
+                                       onChange={(e) => {
+                                           setMinutesValue(Number(e.target.value))
+                                       }}/>
+                            <SelectField
+                                label="AM/PM"
+                                value={meridianSelectedValue}
+                                onChange={(e) => setMeridianSelectedValue(e.target.value)}
+                            >
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </SelectField>
 
+                        </Flex>
                     </Flex>
+
 
                 </Card>
                 <Card>
                     <Flex direction={"column"}>
-                        <label>Update Current Stats</label>
-                        <Button variation="primary" onClick={() => { console.log("clicked") }}>
+                        <label>Update world settings</label>
+                        <Button variation="primary" onClick={() => {
+                            console.log("clicked")
+                        }}>
                             Submit
                         </Button>
 

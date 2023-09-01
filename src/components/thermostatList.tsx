@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 import {
     Badge,
@@ -7,54 +7,35 @@ import {
     Collection,
     Divider,
     Flex,
-    Heading, 
-    Icon, 
+    Heading,
     SelectField,
-    SliderField, SwitchField, useTheme,
-    View
+    SliderField,
+    SwitchField,
+    View,
+    useTheme,
 } from "@aws-amplify/ui-react";
 
-
 export type ThermostatItem = {
-    readonly name: string;
-    readonly currentTemperature: number;
-    readonly tags: string[];
+    readonly deviceId: string;
+    readonly primaryOwner: string;
 }
 
 export type ThermostatProps = {
     readonly items: ThermostatItem[];
 };
 
-interface DeviceAPICallProps {
-    deviceID: string;
+const ThermostatList = (props: ThermostatProps) => {
 
-}
-
-const { REACT_APP_API_URI } = process.env;
-
-
-const makeDeviceAPICall = ({ deviceID }: DeviceAPICallProps) => {
-    fetch(`${REACT_APP_API_URI}/control/${deviceID}`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-
-        }).catch(e => {
-            console.log(e);
-
-        }).catch(e => {
-            console.log(e);
-        });
-}
-
-
-
-const Thermostat = (props: ThermostatProps) => {
-
-    const { items } = props;
-    const [selectedTemperature, setSelectedTemperature] = useState();
+    const {items} = props;
+    const [selectedTemperature, setSelectedTemperature] = useState(0);
     const [selectedModeValue, setSelectedModeValue] = useState("Auto");
-    const { tokens } = useTheme();
+
+    const [currentTemperature, setCurrentTemperature] = useState(0);
+    const [currentMode, setCurrentMode] = useState("Auto");
+    const [currentPower, setCurrentPower] = useState(true);
+    const [tags, setTags] = useState<string[]>([]);
+
+    const {tokens} = useTheme();
 
     return (
         <Card variation="elevated">
@@ -76,22 +57,21 @@ const Thermostat = (props: ThermostatProps) => {
                             <Heading
                                 level={2}
                             >
-                                {item.currentTemperature}
+                                {currentTemperature}
                             </Heading>
                         </Flex>
                         <Flex display={"flex"} direction={"row"} justifyContent={'center'}>
                             <Heading
                                 level={5}
                             >
-                                {item.name}
+                                {item.deviceId}
                             </Heading>
                         </Flex>
-
                         <View padding="xs">
-                            <Divider padding="xs" />
+                            <Divider padding="xs"/>
                             <SliderField
                                 label="Set temperature"
-                                onChange={selectedTemperature}
+                                onChange={setSelectedTemperature}
                                 value={selectedTemperature}
                                 max={100}
                             />
@@ -121,7 +101,7 @@ const Thermostat = (props: ThermostatProps) => {
                             </Card>
                             <Card>
                                 <Flex>
-                                    {item.tags.map((badge) => (
+                                    {tags.map((badge) => (
                                         <Badge
                                             key={badge}
                                             backgroundColor={
@@ -133,8 +113,6 @@ const Thermostat = (props: ThermostatProps) => {
                                     ))}
                                 </Flex>
                             </Card>
-
-
                         </View>
                     </Card>
                 )}
@@ -144,4 +122,4 @@ const Thermostat = (props: ThermostatProps) => {
 }
 
 
-export default Thermostat;
+export default ThermostatList;

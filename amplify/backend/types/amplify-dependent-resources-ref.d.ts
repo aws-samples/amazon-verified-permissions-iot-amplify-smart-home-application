@@ -32,7 +32,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "AVPIoTDatabase": {
+    "AWSIoTAVPDb": {
       "Arn": "string",
       "Name": "string",
       "PartitionKeyName": "string",

@@ -1,0 +1,10 @@
+{
+  "resourceName": "AWSIoTAVPDb",
+  "tableName": "UserMappingTable",
+  "partitionKey": {
+    "fieldName": "deviceId",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

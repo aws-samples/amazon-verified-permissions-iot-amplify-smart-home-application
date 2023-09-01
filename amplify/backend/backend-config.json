@@ -119,7 +119,7 @@
     }
   },
   "storage": {
-    "AVPIoTDatabase": {
+    "AWSIoTAVPDb": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"
     }

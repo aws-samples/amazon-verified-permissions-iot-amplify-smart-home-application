@@ -6,5 +6,9 @@
   {
     "Action": ["verifiedpermissions:*"],
     "Resource": ["*"]
+  },
+  {
+    "Action": ["dynamodb:*"],
+    "Resource": ["*"]
   }
 ]

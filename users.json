@@ -1,58 +1,39 @@
 {
-    "AVPIoTDatabase-dev": [
-        {
-            "PutRequest": {
-                "Item": {
-                    "uid": {
-                        "S": "7dbf8ae9-89f7-42b2-af1f-0027a26d528e"
-                    },
-                    "username": {
-                        "S": "primaryowner"
-                    },
-                    "role": {
-                        "S": "primaryowner"
-                    },
-                    "deviceId": {
-                        "S": "Thermostat1"
-                    }
-                }
-            }
-        },
-        {
-            "PutRequest": {
-                "Item": {
-                    "uid": {
-                        "S": "b4e7b3be-106a-4d4a-9048-ae9255f8e40a"
-                    },
-                    "username": {
-                        "S": "Guest1"
-                    },
-                    "role": {
-                        "S": "guest"
-                    },
-                    "deviceId": {
-                        "S": "Thermostat1"
-                    }
-                }
-            }
-        },
-        {
-            "PutRequest": {
-                "Item": {
-                    "uid": {
-                        "S": "25073b3f-15cb-4d8e-8c09-49dbab4d581b"
-                    },
-                    "username": {
-                        "S": "Powercompany1"
-                    },
-                    "role": {
-                        "S": "powercompany"
-                    },
-                    "deviceId": {
-                        "S": "Thermostat1"
-                    }
-                }
-            }
+  "UserMappingTable-dev": [
+    {
+      "PutRequest": {
+        "Item": {
+          "deviceId": {
+            "S": "Thermostat1"
+          },
+          "primaryOwner": {
+            "S": "primaryowner1"
+          },
+          "additionalUsers": {
+            "SS": [
+              "guest1",
+              "powercompany1"
+            ]
+          }
         }
-    ]
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "deviceId": {
+            "S": "Thermostat2"
+          },
+          "primaryOwner": {
+            "S": "guest1"
+          },
+          "additionalUsers": {
+            "SS": [
+              "powercompany1"
+            ]
+          }
+        }
+      }
+    }
+  ]
 }

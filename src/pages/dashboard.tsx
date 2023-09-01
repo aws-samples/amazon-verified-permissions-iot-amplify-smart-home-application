@@ -1,29 +1,66 @@
-import React, { useEffect, useContext } from "react";
+import React, {useEffect} from "react";
 import {
     Flex,
     Grid,
 } from "@aws-amplify/ui-react";
-import Thermostat from "../components/thermostat";
+import ThermostatList from "../components/thermostatList";
 import Header from "../components/header";
 import CurrentValues from "../components/currentValues";
-import InvitationLink from "../components/invitationLink";
+import {Auth} from "@aws-amplify/auth"
 
+const {REACT_APP_API_URI} = process.env;
 
 interface DashboardProps {
 }
 
+function getAllItemsForUser(jwt: string): [] {
 
 
+    return []
+
+}
 
 const Dashboard = (props: DashboardProps) => {
 
+    const [items, setItems] = React.useState([]);
 
-    // get this from api
-    const items = [{
-        name: 'thermostat1',
-        currentTemperature: 72,
-        tags: ['Home1', 'Smart Thermostat'],
-    }];
+    useEffect(() => {
+        Auth.currentSession()
+            .then(response => {
+                let accessToken = response.getAccessToken()
+                let jwt = accessToken.getJwtToken();
+
+                fetch(`${REACT_APP_API_URI}/items`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${jwt}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                })
+                    .then(
+                        response =>
+                            response.json()
+                                .then(data => {
+                                    setItems(data)
+                                })
+                                .catch(e => {
+
+                                        console.log("Unable to decode JSON")
+                                        console.log(e);
+                                    }
+                                ))
+                    .catch(e => {
+                        console.log("Unable to get items")
+                        console.log(e);
+                    })
+            })
+            .catch(e => {
+                console.log("Unable to get current session")
+                console.log(e)
+            });
+
+    }, [])
 
     return (
         <Grid
@@ -37,13 +74,14 @@ const Dashboard = (props: DashboardProps) => {
             <Flex
                 direction="row"
                 wrap="nowrap"
+                justifyContent={"space-between"}
                 gap="1rem"
             >
-                <Thermostat
+                <ThermostatList
                     items={items}
                 />
-                <InvitationLink />
-                <CurrentValues />
+
+                <CurrentValues/>
 
             </Flex>
 

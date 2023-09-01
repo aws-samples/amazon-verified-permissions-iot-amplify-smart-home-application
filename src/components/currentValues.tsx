@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Button, Card, Flex, Heading, SelectField, TextField } from "@aws-amplify/ui-react";
-// import {FaSnowflake} from "react-icons/fa";
-// import {BsFire} from "react-icons/bs";
 
 interface TemperatureIconProps {
     readonly temperature: number;
@@ -28,7 +26,7 @@ const CurrentValues = () => {
     const [currentTemperature, setCurrentTemperature] = useState(72);
 
     return (
-        <Card width={"30%"} variation="elevated">
+        <Card width={"40%"} variation="elevated">
             <Heading level={2} margin={0} padding={0}>Current Values</Heading>
             <Flex
                 direction="column"

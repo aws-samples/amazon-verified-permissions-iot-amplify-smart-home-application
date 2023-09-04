@@ -7,7 +7,7 @@ import * as jwt from 'jsonwebtoken';
 import {IoTDataPlaneClient, UpdateThingShadowCommand, GetThingShadowCommand} from "@aws-sdk/client-iot-data-plane";
 import {permissionsCheck} from '/opt/nodejs/permissions.mjs';  // This comes from custom code in the layer
 
-const REGION= "us-east-2";
+const REGION= "us-east-1";
 const client = new IoTDataPlaneClient({region: REGION});
 
 // this function gets data from device shadow using the deviceId
@@ -45,7 +45,7 @@ const setTemperature = (deviceId, temperature, deviceMode, power) => {
 };
 
 
-const getTemperature = (deviceId) => {
+async function getTemperature (deviceId){
     console.log("getTemperature");
 
     // get data from device shadow
@@ -58,6 +58,7 @@ const getTemperature = (deviceId) => {
         response.json()
             .then(
                 res => {
+                    console.log('Received response');
                     console.log(res);
                     return res;
                 }
@@ -66,7 +67,11 @@ const getTemperature = (deviceId) => {
                 console.log("Unable to decode JSON coming from Shadow Read call");
             })
 
-    }).catch(e => console.log(e));
+    }).catch(
+        e => {
+            console.log('Received exception');
+            console.log(e)
+        });
 }
 
 export const handler = async (event) => {
@@ -83,7 +88,8 @@ export const handler = async (event) => {
     // get action from post body
     const action = event.body.action;
     console.log(`ACTION: ${JSON.stringify(action)}`);
-
+    console.log(deviceId);
+    let resp = await getTemperature(deviceId);
     return {
         statusCode: 200,
         //  Uncomment below to enable CORS requests
@@ -91,6 +97,6 @@ export const handler = async (event) => {
              "Access-Control-Allow-Origin": "*",
              "Access-Control-Allow-Headers": "*"
          },
-        body: JSON.stringify('Hello from Lambda!'),
+        body: JSON.stringify(resp),
     };
 };

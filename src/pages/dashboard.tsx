@@ -13,13 +13,6 @@ const {REACT_APP_API_URI} = process.env;
 interface DashboardProps {
 }
 
-function getAllItemsForUser(jwt: string): [] {
-
-
-    return []
-
-}
-
 const Dashboard = (props: DashboardProps) => {
 
     const [items, setItems] = React.useState([]);

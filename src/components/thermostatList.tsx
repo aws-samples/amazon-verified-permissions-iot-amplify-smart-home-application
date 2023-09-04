@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {
     Badge,
@@ -14,6 +14,7 @@ import {
     View,
     useTheme,
 } from "@aws-amplify/ui-react";
+import {Auth} from "@aws-amplify/auth";
 
 export type ThermostatItem = {
     readonly deviceId: string;
@@ -24,18 +25,43 @@ export type ThermostatProps = {
     readonly items: ThermostatItem[];
 };
 
+const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    index: number,
+    setStateFunction: React.Dispatch<React.SetStateAction<any[]>>,
+    isBoolean: boolean = false
+  ) => {
+    const newValue = isBoolean ? e.target.isChecked : e.target.value;
+    const newState = [...(setStateFunction as any)];
+    newState[index] = newValue;
+    setStateFunction(newState);
+  };
+
 const ThermostatList = (props: ThermostatProps) => {
 
     const {items} = props;
-    const [selectedTemperature, setSelectedTemperature] = useState(0);
-    const [selectedModeValue, setSelectedModeValue] = useState("Auto");
-
-    const [currentTemperature, setCurrentTemperature] = useState(0);
-    const [currentMode, setCurrentMode] = useState("Auto");
-    const [currentPower, setCurrentPower] = useState(false);
-    const [tags, setTags] = useState<string[]>([]);
+    const [selectedTemperature, setSelectedTemperature] = useState<number[]>([0]);
+    const [currentTemperature, setCurrentTemperature] = useState<number[]>([0]);
+    const [currentMode, setCurrentMode] = useState<string[]>(["Auto"]);
+    const [currentPower, setCurrentPower] = useState<boolean[]>([false]);
+    // const [tags, setTags] = useState<string[]>([]);
+    const [jwt, setJWT] = useState<string>("");
 
     const {tokens} = useTheme();
+
+    useEffect(() => {
+
+        Auth.currentSession()
+            .then(response => {
+                let accessToken = response.getAccessToken()
+                setJWT(accessToken.getJwtToken());
+            })
+            .catch(e => {
+                console.log("Unable to get current session")
+                console.log(e)
+            });
+
+    }, [])
 
     return (
         <Card variation="elevated">
@@ -71,7 +97,7 @@ const ThermostatList = (props: ThermostatProps) => {
                             <Divider padding="xs"/>
                             <SliderField
                                 label="Desired Temperature: "
-                                onChange={setSelectedTemperature}
+                                onChange={handleInputChange}
                                 value={selectedTemperature}
                                 max={100}
                             />
@@ -79,8 +105,8 @@ const ThermostatList = (props: ThermostatProps) => {
                             <Card>
                                 <SelectField
                                     label="Mode"
-                                    value={selectedModeValue}
-                                    onChange={(e) => setSelectedModeValue(e.target.value)}
+                                    value={currentMode}
+                                    onChange={(e) => handleInputChange(e.target.value)}
                                 >
                                     <option value="Auto">Auto</option>
                                     <option value="Heat">Heat</option>

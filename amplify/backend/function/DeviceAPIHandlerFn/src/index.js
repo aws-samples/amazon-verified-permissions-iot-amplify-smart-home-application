@@ -45,34 +45,18 @@ const setTemperature = (deviceId, temperature, deviceMode, power) => {
     // return data;
 };
 
-
 async function getTemperature(deviceId) {
     console.log("getTemperature");
 
     // get data from device shadow
-    const input = {
-        thingName: deviceId,
-    }
-    const command = new GetThingShadowCommand(input);
-    client.send(command).then(response => {
-        const shadow = JSON.parse(new TextDecoder().decode(response.payload));
-        console.log('Received response');
+    const command = new GetThingShadowCommand({ thingName: deviceId });
+    try {
+        const response = await client.send(command);
+        const shadow = JSON.parse(new TextDecoder().decode(response.payload));  // Convert Uint8Array payload to string, then to JSON
         console.log(shadow);
-        return shadow;
-        // response.json()
-        //     .then(res => {
-        //
-        //         }
-        //     )
-        //     .catch(e => {
-        //         console.log("Unable to decode JSON coming from Shadow Read call");
-        //     })
-
-    }).catch(
-        e => {
-            console.log('Received exception');
-            console.log(e)
-        });
+    } catch (error) {
+        console.error("Error fetching shadow:", error);
+    }
 }
 
 export const handler = async (event) => {

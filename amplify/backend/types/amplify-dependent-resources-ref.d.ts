@@ -23,13 +23,6 @@ export type AmplifyDependentResourcesAttributes = {
       "Name": "string",
       "Region": "string"
     },
-    "IoTTestFn": {
-      "Arn": "string",
-      "LambdaExecutionRole": "string",
-      "LambdaExecutionRoleArn": "string",
-      "Name": "string",
-      "Region": "string"
-    },
     "ItemsAPIHandlerFn": {
       "Arn": "string",
       "LambdaExecutionRole": "string",

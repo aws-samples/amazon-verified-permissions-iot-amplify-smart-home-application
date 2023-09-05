@@ -2,13 +2,14 @@
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
 
-
 import * as jwt from 'jsonwebtoken';
 import {IoTDataPlaneClient, UpdateThingShadowCommand, GetThingShadowCommand} from "@aws-sdk/client-iot-data-plane";
 import {permissionsCheck} from '/opt/nodejs/permissions.mjs';  // This comes from custom code in the layer
 
-const REGION= "us-east-1";
-const client = new IoTDataPlaneClient({region: REGION});
+const REGION = "us-east-2";
+const client = new IoTDataPlaneClient({
+    region: REGION,
+});
 
 // this function gets data from device shadow using the deviceId
 const setTemperature = (deviceId, temperature, deviceMode, power) => {
@@ -45,27 +46,27 @@ const setTemperature = (deviceId, temperature, deviceMode, power) => {
 };
 
 
-async function getTemperature (deviceId){
+async function getTemperature(deviceId) {
     console.log("getTemperature");
 
     // get data from device shadow
     const input = {
         thingName: deviceId,
-        payload: JSON.stringify({})
     }
     const command = new GetThingShadowCommand(input);
     client.send(command).then(response => {
-        response.json()
-            .then(
-                res => {
-                    console.log('Received response');
-                    console.log(res);
-                    return res;
-                }
-            )
-            .catch(e => {
-                console.log("Unable to decode JSON coming from Shadow Read call");
-            })
+        const shadow = JSON.parse(new TextDecoder().decode(response.payload));
+        console.log('Received response');
+        console.log(shadow);
+        return shadow;
+        // response.json()
+        //     .then(res => {
+        //
+        //         }
+        //     )
+        //     .catch(e => {
+        //         console.log("Unable to decode JSON coming from Shadow Read call");
+        //     })
 
     }).catch(
         e => {
@@ -93,10 +94,10 @@ export const handler = async (event) => {
     return {
         statusCode: 200,
         //  Uncomment below to enable CORS requests
-         headers: {
-             "Access-Control-Allow-Origin": "*",
-             "Access-Control-Allow-Headers": "*"
-         },
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*"
+        },
         body: JSON.stringify(resp),
     };
 };

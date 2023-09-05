@@ -16,6 +16,8 @@ import {
 } from "@aws-amplify/ui-react";
 import {Auth} from "@aws-amplify/auth";
 
+const {REACT_APP_API_URI} = process.env;
+
 export type ThermostatItem = {
     readonly deviceId: string;
     readonly primaryOwner: string;
@@ -25,32 +27,50 @@ export type ThermostatProps = {
     readonly items: ThermostatItem[];
 };
 
+
+interface temperatureAPIPayload {
+    temperature: number;
+    power: boolean;
+    mode: string;
+}
+
 const handleInputChange = (
-  e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | number,
-  index: number,
-  currentArray: any[],
-  setStateFunction: React.Dispatch<React.SetStateAction<any[]>>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | number,
+    index: number,
+    currentArray: any[],
+    setStateFunction: React.Dispatch<React.SetStateAction<any[]>>
 ) => {
-  let newValue: string | number | boolean;
+    let newValue: string | number | boolean;
 
-  if (typeof e === 'number') {
-    newValue = e;
-  } else {
-    if (e.target.type === 'checkbox') {
-      newValue = (e.target as HTMLInputElement).checked;
-    } else if (e.target.type === 'number') {
-      newValue = Number((e.target as HTMLInputElement).value);
+    if (typeof e === 'number') {
+        newValue = e;
     } else {
-      newValue = e.target.value;
+        if (e.target.type === 'checkbox') {
+            newValue = (e.target as HTMLInputElement).checked;
+        } else if (e.target.type === 'number') {
+            newValue = Number((e.target as HTMLInputElement).value);
+        } else {
+            newValue = e.target.value;
+        }
     }
-  }
 
-  const newState = [...currentArray];
-  newState[index] = newValue;
-  setStateFunction(newState);
+    const newState = [...currentArray];
+    newState[index] = newValue;
+    setStateFunction(newState);
 };
 
+//handle input change without element; simply get current array and udpate the specific index
+const handleInputChangeNoElement = (
+    newValue: string | number | boolean,
+    index: number,
+    currentArray: any[],
+    setStateFunction: React.Dispatch<React.SetStateAction<any[]>>
+) => {
 
+    const newState = [...currentArray];
+    newState[index] = newValue;
+    setStateFunction(newState);
+}
 
 
 const ThermostatList = (props: ThermostatProps) => {
@@ -64,6 +84,40 @@ const ThermostatList = (props: ThermostatProps) => {
     const [jwt, setJWT] = useState<string>("");
 
     const {tokens} = useTheme();
+
+    const makeSetTemperatureAPICall = (deviceId: string, index: number, payload: temperatureAPIPayload,) => {
+        fetch(`${REACT_APP_API_URI}/control/${deviceId}`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${jwt}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                action: "SetTemperature",
+                ...payload
+            })
+        })
+            .then(res => {
+                res.json()
+                    .then(data => {
+                        console.log(data);
+                        // set the appropriate state
+                        handleInputChangeNoElement(data.temperature, index, currentTemperature, setCurrentTemperature);
+                        handleInputChangeNoElement(data.power, index, currentPower, setCurrentPower);
+                        handleInputChangeNoElement(data.mode, index, currentMode, setCurrentMode);
+                        alert("SetTemperature API called successfully");
+                    })
+                    .catch(e => {
+                        console.log("Failed to decode JSON");
+                        console.log(e);
+                    })
+            })
+            .catch(err => {
+                console.log("Failed to make API call");
+                console.log(err);
+            })
+    }
 
     useEffect(() => {
 
@@ -114,7 +168,9 @@ const ThermostatList = (props: ThermostatProps) => {
                             <SliderField
                                 label="Desired Temperature: "
                                 value={selectedTemperature[index]}
-                                onChange={e => {handleInputChange(e, index, selectedTemperature, setSelectedTemperature)}}
+                                onChange={e => {
+                                    handleInputChange(e, index, selectedTemperature, setSelectedTemperature)
+                                }}
                                 max={100}
                             />
 
@@ -123,8 +179,8 @@ const ThermostatList = (props: ThermostatProps) => {
                                     label="Mode"
                                     value={currentMode[index]}
                                     onChange={
-                                    (e) =>
-                                        handleInputChange(e, index, currentMode, setCurrentMode)}
+                                        (e) =>
+                                            handleInputChange(e, index, currentMode, setCurrentMode)}
                                 >
                                     <option value="Auto">Auto</option>
                                     <option value="Heat">Heat</option>
@@ -165,7 +221,11 @@ const ThermostatList = (props: ThermostatProps) => {
                                         variation={"primary"}
                                         colorTheme={"success"}
                                         onClick={() => {
-
+                                            makeSetTemperatureAPICall(item.deviceId, index, {
+                                                temperature: selectedTemperature[index],
+                                                power: currentPower[index],
+                                                mode: currentMode[index]
+                                            })
                                         }}
                                     >
                                         SetTemperature

@@ -26,16 +26,32 @@ export type ThermostatProps = {
 };
 
 const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-    index: number,
-    setStateFunction: React.Dispatch<React.SetStateAction<any[]>>,
-    isBoolean: boolean = false
-  ) => {
-    const newValue = isBoolean ? e.target.isChecked : e.target.value;
-    const newState = [...(setStateFunction as any)];
-    newState[index] = newValue;
-    setStateFunction(newState);
-  };
+  e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | number,
+  index: number,
+  currentArray: any[],
+  setStateFunction: React.Dispatch<React.SetStateAction<any[]>>
+) => {
+  let newValue: string | number | boolean;
+
+  if (typeof e === 'number') {
+    newValue = e;
+  } else {
+    if (e.target.type === 'checkbox') {
+      newValue = (e.target as HTMLInputElement).checked;
+    } else if (e.target.type === 'number') {
+      newValue = Number((e.target as HTMLInputElement).value);
+    } else {
+      newValue = e.target.value;
+    }
+  }
+
+  const newState = [...currentArray];
+  newState[index] = newValue;
+  setStateFunction(newState);
+};
+
+
+
 
 const ThermostatList = (props: ThermostatProps) => {
 
@@ -97,16 +113,18 @@ const ThermostatList = (props: ThermostatProps) => {
                             <Divider padding="xs"/>
                             <SliderField
                                 label="Desired Temperature: "
-                                onChange={handleInputChange}
-                                value={selectedTemperature}
+                                value={selectedTemperature[index]}
+                                onChange={e => {handleInputChange(e, index, selectedTemperature, setSelectedTemperature)}}
                                 max={100}
                             />
 
                             <Card>
                                 <SelectField
                                     label="Mode"
-                                    value={currentMode}
-                                    onChange={(e) => handleInputChange(e.target.value)}
+                                    value={currentMode[index]}
+                                    onChange={
+                                    (e) =>
+                                        handleInputChange(e, index, currentMode, setCurrentMode)}
                                 >
                                     <option value="Auto">Auto</option>
                                     <option value="Heat">Heat</option>
@@ -118,33 +136,48 @@ const ThermostatList = (props: ThermostatProps) => {
                                 <SwitchField
                                     label="Thermostat Power"
                                     trackCheckedColor={tokens.colors.green[60]}
-                                    isChecked={currentPower}
-                                    onChange={() => {
-                                        setCurrentPower(!currentPower)
+                                    isChecked={currentPower[index]}
+                                    onChange={(e) => {
+                                        handleInputChange(e, index, currentPower, setCurrentPower)
+                                        // setCurrentPower(!currentPower)
                                     }}
                                     defaultChecked={true}
                                 />
                             </Card>
-                            <Card>
-                                <Flex>
-                                    {tags.map((badge) => (
-                                        <Badge
-                                            key={badge}
-                                            backgroundColor={
-                                                badge === 'Waterfront' ? 'blue.40'
-                                                    : badge === 'Mountain' ? 'green.40' : 'yellow.40'}
-                                        >
-                                            {badge}
-                                        </Badge>
-                                    ))}
-                                </Flex>
-                            </Card>
+                            {/*<Card>*/}
+                            {/*    <Flex>*/}
+                            {/*        {tags.map((badge) => (*/}
+                            {/*            <Badge*/}
+                            {/*                key={badge}*/}
+                            {/*                backgroundColor={*/}
+                            {/*                    badge === 'Waterfront' ? 'blue.40'*/}
+                            {/*                        : badge === 'Mountain' ? 'green.40' : 'yellow.40'}*/}
+                            {/*            >*/}
+                            {/*                {badge}*/}
+                            {/*            </Badge>*/}
+                            {/*        ))}*/}
+                            {/*    </Flex>*/}
+                            {/*</Card>*/}
                             <Card>
                                 <Flex direction={"column"} justifyContent={"space-between"}>
-                                    <Button width={"100%"} variation={"primary"} colorTheme={"success"}>
+                                    <Button
+                                        width={"100%"}
+                                        variation={"primary"}
+                                        colorTheme={"success"}
+                                        onClick={() => {
+
+                                        }}
+                                    >
                                         setTemperature
                                     </Button>
-                                    <Button width={"100%"} variation={"primary"} colorTheme={"success"}>
+                                    <Button
+                                        width={"100%"}
+                                        variation={"primary"}
+                                        colorTheme={"success"}
+                                        onClick={() => {
+
+                                        }}
+                                    >
                                         getTemperature
                                     </Button>
                                 </Flex>

@@ -70,9 +70,9 @@ export const handler = async (event) => {
 
     let resp;
     if (action === "SetTemperature") {
-        const temperature = event.body.temperature;
-        const deviceMode = event.body.mode;
-        const power = event.body.power;
+        const temperature = body.temperature;
+        const deviceMode = body.mode;
+        const power = body.power;
         console.log(temperature);
         console.log(deviceMode);
         console.log(power);

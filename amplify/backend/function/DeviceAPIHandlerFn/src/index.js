@@ -6,19 +6,19 @@ import * as jwt from 'jsonwebtoken';
 import {IoTDataPlaneClient, UpdateThingShadowCommand, GetThingShadowCommand} from "@aws-sdk/client-iot-data-plane";
 import * as permissions from '/opt/nodejs/permissions.mjs';  // This comes from custom code in the layer
 
-const POLICY_STORED_ID = "P44TB9Z3rwaLp56D9WMJcP";
+const POLICY_STORED_ID = process.env.POLICY_STORED_ID;
 const REGION= "us-east-1";
 const client = new IoTDataPlaneClient({region: REGION});
 
 // this function gets data from device shadow using the deviceId
-async function setTemperature(deviceId, temperature, deviceMode, power) {
+async function setTemperature(deviceId, temperature, mode, power) {
     console.log("setTemperature");
     // update device shadow
     const shadowUpdate = {
         state: {
             desired: {
                 temperature,
-                mode: deviceMode,
+                mode,
                 power
             }
         }

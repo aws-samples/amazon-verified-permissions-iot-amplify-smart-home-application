@@ -7,5 +7,11 @@
       "isLatestVersionSelected": true,
       "env": "dev"
     }
+  ],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "policyStoreId",
+      "environmentVariableName": "POLICY_STORE_ID"
+    }
   ]
 }

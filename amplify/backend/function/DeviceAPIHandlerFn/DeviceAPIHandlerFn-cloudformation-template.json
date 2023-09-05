@@ -19,6 +19,9 @@
     "functionawsiotavpwebappAVPPermissionsLayerArn": {
       "Type": "String",
       "Default": "functionawsiotavpwebappAVPPermissionsLayerArn"
+    },
+    "policyStoreId": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -73,6 +76,9 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
+            },
+            "POLICY_STORE_ID": {
+              "Ref": "policyStoreId"
             }
           }
         },

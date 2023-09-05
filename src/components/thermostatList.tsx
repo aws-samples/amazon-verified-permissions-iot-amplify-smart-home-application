@@ -168,7 +168,7 @@ const ThermostatList = (props: ThermostatProps) => {
 
                                         }}
                                     >
-                                        setTemperature
+                                        SetTemperature
                                     </Button>
                                     <Button
                                         width={"100%"}
@@ -178,7 +178,7 @@ const ThermostatList = (props: ThermostatProps) => {
 
                                         }}
                                     >
-                                        getTemperature
+                                        GetTemperature
                                     </Button>
                                 </Flex>
                             </Card>

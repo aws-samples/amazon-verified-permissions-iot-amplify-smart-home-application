@@ -5,8 +5,9 @@
 
 import * as jwt from 'jsonwebtoken';
 import {IoTDataPlaneClient, UpdateThingShadowCommand, GetThingShadowCommand} from "@aws-sdk/client-iot-data-plane";
-import {permissionsCheck} from '/opt/nodejs/permissions.mjs';  // This comes from custom code in the layer
+import * as permissions from '/opt/nodejs/permissions.mjs';  // This comes from custom code in the layer
 
+const POLICY_STORED_ID = "P44TB9Z3rwaLp56D9WMJcP";
 const REGION= "us-east-1";
 const client = new IoTDataPlaneClient({region: REGION});
 
@@ -44,37 +45,30 @@ const setTemperature = (deviceId, temperature, deviceMode, power) => {
     // return data;
 };
 
-
-async function getTemperature (deviceId){
-    console.log("getTemperature");
-
-    // get data from device shadow
-    const input = {
-        thingName: deviceId,
-        payload: JSON.stringify({})
+async function getTemperature(thingName) {
+    // Initialize the AWS IoT Data Plane client
+    const iotData = new IoTDataPlaneClient({
+      region: REGION,  // Replace with your AWS region
+    });
+  
+    const command = new GetThingShadowCommand({
+      thingName: thingName,
+    });
+  
+    try {
+      const data = await iotData.send(command);
+      
+      // The shadow payload is a Uint8Array, so we need to convert it to a string
+      // and then parse it as JSON to get a JavaScript object.
+      const payload = JSON.parse(new TextDecoder("utf-8").decode(data.payload));
+      return payload;
+    } catch (error) {
+      console.error(`Failed to retrieve shadow for ${thingName}:`, error);
+      return null;
     }
-    const command = new GetThingShadowCommand(input);
-    client.send(command).then(response => {
-        response.json()
-            .then(
-                res => {
-                    console.log('Received response');
-                    console.log(res);
-                    return res;
-                }
-            )
-            .catch(e => {
-                console.log("Unable to decode JSON coming from Shadow Read call");
-            })
+  }
 
-    }).catch(
-        e => {
-            console.log('Received exception');
-            console.log(e)
-        });
-}
-
-export const handler = async (event) => {
+  export const handler = async (event) => {
     console.log(`EVENT: ${JSON.stringify(event)}`);
 
     // get bearer token from event headers
@@ -85,18 +79,59 @@ export const handler = async (event) => {
     console.log(`DECODED: ${JSON.stringify(decoded)}`);
     // get deviceId from path parameters
     const deviceId = event.pathParameters.deviceId;
-    // get action from post body
-    const action = event.body.action;
+    // get action and other parameters from post body
+    const { action, temperature, deviceMode, power } = event.body;
     console.log(`ACTION: ${JSON.stringify(action)}`);
     console.log(deviceId);
-    let resp = await getTemperature(deviceId);
+
+    let shadow = {
+        deviceId: deviceId,
+        state: {
+            desired: {
+                temperature: temperature,
+                mode: deviceMode,
+                power: power
+            }
+        }
+    };
+    
+
+    const decision = await permissions.permissionsCheck(decoded.payload.username, action, shadow);
+    console.log(`Decision: ${decision}`);
+
+    if (decision != "ALLOW") {
+        return {
+            statusCode: 401,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "*"
+            },
+            body: JSON.stringify('Unauthorized!'),
+        };
+    }
+
+    let payload;
+    if (action === 'SetTemperature') {
+        payload = setTemperature(deviceId, temperature, deviceMode, power);
+    } else if (action === 'GetTemperature') {
+        payload = await getTemperature(deviceId);
+    } else {
+        return {
+            statusCode: 400,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "*"
+            },
+            body: JSON.stringify('Invalid action!'),
+        };
+    }
+
     return {
         statusCode: 200,
-        //  Uncomment below to enable CORS requests
-         headers: {
-             "Access-Control-Allow-Origin": "*",
-             "Access-Control-Allow-Headers": "*"
-         },
-        body: JSON.stringify(resp),
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*"
+        },
+        body: JSON.stringify(payload),
     };
 };

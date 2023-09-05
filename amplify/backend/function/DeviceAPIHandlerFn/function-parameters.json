@@ -12,6 +12,14 @@
     {
       "cloudFormationParameterName": "policyStoreId",
       "environmentVariableName": "POLICY_STORE_ID"
+    },
+    {
+      "cloudFormationParameterName": "region",
+      "environmentVariableName": "REGION"
+    },
+    {
+      "cloudFormationParameterName": "tableName",
+      "environmentVariableName": "TABLE_NAME"
     }
   ]
 }

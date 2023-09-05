@@ -22,6 +22,12 @@
     },
     "policyStoreId": {
       "Type": "String"
+    },
+    "region": {
+      "Type": "String"
+    },
+    "tableName": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -74,11 +80,14 @@
             "ENV": {
               "Ref": "env"
             },
-            "REGION": {
-              "Ref": "AWS::Region"
-            },
             "POLICY_STORE_ID": {
               "Ref": "policyStoreId"
+            },
+            "REGION": {
+              "Ref": "region"
+            },
+            "TABLE_NAME": {
+              "Ref": "tableName"
             }
           }
         },

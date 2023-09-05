@@ -6,8 +6,7 @@ import * as jwt from 'jsonwebtoken';
 import {IoTDataPlaneClient, UpdateThingShadowCommand, GetThingShadowCommand} from "@aws-sdk/client-iot-data-plane";
 import * as permissions from '/opt/nodejs/permissions.mjs';  // This comes from custom code in the layer
 
-const POLICY_STORED_ID = process.env.POLICY_STORED_ID;
-const REGION= "us-east-1";
+const REGION= process.env.REGION;
 const client = new IoTDataPlaneClient({region: REGION});
 
 // this function gets data from device shadow using the deviceId

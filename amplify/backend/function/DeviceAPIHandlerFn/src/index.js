@@ -12,44 +12,37 @@ const client = new IoTDataPlaneClient({
 });
 
 // this function gets data from device shadow using the deviceId
-const setTemperature = (deviceId, temperature, deviceMode, power) => {
+async function setTemperature(deviceId, temperature, deviceMode, power) {
     console.log("setTemperature");
     // update device shadow
-    const input = { // UpdateThingShadowRequest
-        thingName: deviceId, // required
-        payload: JSON.stringify({
-            "state": {
-                "desired": {
-                    "temperature": temperature,
-                    "mode": deviceMode,
-                    "power": power
-                }
+    const shadowUpdate = {
+        state: {
+            desired: {
+                temperature,
+                mode: deviceMode,
+                power
             }
-        })
+        }
     };
-
-    const command = new UpdateThingShadowCommand(input);
-    client.send(command)
-        .then(response => {
-            response.json()
-                .then(
-                    res => {
-                        return res;
-                    }
-                )
-                .catch(e => {
-                    console.log("Unable to decode JSON coming from Shadow Update call");
-                })
-        })
-        .catch(e => console.log(e));
-    // return data;
+    const payload = new TextEncoder().encode(JSON.stringify(shadowUpdate));
+    const command = new UpdateThingShadowCommand({
+        thingName: deviceId,
+        payload: payload
+    });
+    try {
+        const response = await client.send(command);
+        const updatedShadow = JSON.parse(new TextDecoder().decode(response.payload));
+        console.log(updatedShadow);
+    } catch (error) {
+        console.error("Error updating shadow:", error);
+    }
 };
 
 async function getTemperature(deviceId) {
     console.log("getTemperature");
 
     // get data from device shadow
-    const command = new GetThingShadowCommand({ thingName: deviceId });
+    const command = new GetThingShadowCommand({thingName: deviceId});
     try {
         const response = await client.send(command);
         const shadow = JSON.parse(new TextDecoder().decode(response.payload));  // Convert Uint8Array payload to string, then to JSON
@@ -60,6 +53,7 @@ async function getTemperature(deviceId) {
 }
 
 export const handler = async (event) => {
+
     console.log(`EVENT: ${JSON.stringify(event)}`);
 
     // get bearer token from event headers
@@ -71,10 +65,29 @@ export const handler = async (event) => {
     // get deviceId from path parameters
     const deviceId = event.pathParameters.deviceId;
     // get action from post body
-    const action = event.body.action;
-    console.log(`ACTION: ${JSON.stringify(action)}`);
-    console.log(deviceId);
-    let resp = await getTemperature(deviceId);
+    const body = JSON.parse(event.body);
+    const action = body.action;
+
+    let resp;
+    if (action === "SetTemperature") {
+        const temperature = event.body.temperature;
+        const deviceMode = event.body.mode;
+        const power = event.body.power;
+        console.log(temperature);
+        console.log(deviceMode);
+        console.log(power);
+
+        // check if user has permission to set the temperature
+        // const permission = await permissionsCheck(decoded.payload.sub, deviceId, "write");
+        // if (permission) {
+        //     let resp = await setTemperature(deviceId, temperature, deviceMode, power);
+        // }
+
+        resp = await setTemperature(deviceId,);
+    } else if (action === "GetTemperature") {
+        resp = await getTemperature(deviceId);
+    }
+
     return {
         statusCode: 200,
         //  Uncomment below to enable CORS requests

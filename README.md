@@ -44,8 +44,11 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Learn More
+## Clean Up
+Delete the CloudFormation stack on AWS console in the selected region. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Security
+See CONTRIBUTING for more information.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
+This library is licensed under the MIT-0 License. See the LICENSE file.

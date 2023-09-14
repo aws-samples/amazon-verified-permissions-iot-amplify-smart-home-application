@@ -21,10 +21,9 @@ Amplify deploys the following resources through AWS CloudFormation:
 There are three steps to deploying this backend to Amplify easily:
 1. Fork this repository and change the following variables in the code.
 2. Navigate to Line #3 on `amplify/backend/function/DeviceAPIHandlerFn/src/permissions.js` where `POLICY_STORE_ID` has been defined and change the value to your own Policy Store ID as mentioned in the blog.
-3. Update your repository name in this README.md file below: Replace the quoted text with your repository link
+3. Update your repository name in this README.md file below: Replace the username/repository link with your own forked repository's link
 
-[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=<Your repository name goes here. Remove the triangular braces>)
-
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/username/repository)
 
 ## Development
 

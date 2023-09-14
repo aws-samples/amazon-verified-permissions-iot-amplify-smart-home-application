@@ -20,7 +20,55 @@ Amplify deploys the following resources through AWS CloudFormation:
 [![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=[https://github.com/username/repository](https://github.com/aws-samples/amazon-verified-permissions-iot-amplify-smart-home-application))
 
 ## Development
-This frontend for this project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+The GitHub repository contains the Amplify project we will use to deploy the dashboard in our AWS account. This dashboard is the user-facing application that the manufacturer provides via a web or mobile interface. Through this dashboard, you’ll be able to see how different API calls can be authorized for different personas. You’ll also be able to tweak different variables like current time to see how different users can interact with different parts of the dashboard. Let’s go ahead and set it up.
+
+Clone the repository by using this command:
+
+`git clone https://github.com/aws-samples/amazon-verified-permissions-iot-amplify-smart-home-application.git`
+
+Next, navigate to the root of the project directory (also referred to as the parent directory) and execute the command to initialize the Amplify application
+
+`amplify init`
+
+Follow the Amplify CLI instructions to give either an access token or choose relevant AWS profile to execute commands against your AWS account. This is a good checkpoint to make sure we’re deploying in the region of our choice. For this blog post we’re relying on us-east-2. No matter which region you end up choosing, we want to be consistent across all services.
+
+Once the initialization is complete, simply run 
+
+`amplify push`
+
+This will provision the backed in the cloud and will publish the web hosting to Amazon CloudFront via AWS Amplify. Notice that it warns us about IAM permissions on all resources, we’re doing that for this solution. As mentioned before, in production we highly recommend following the principle of least privilege as mentioned in our security best practices.
+
+Here’s a screenshot of the what the output may look like on your deployment
+
+ Figure 1: Sample AWS Amplify CLI output of project initialization and provisioning
+
+
+Once the provisioning process is complete. You’ll see the URL for the provisioned Rest API. Grab the Rest API URL and go to the root directory of the project. Here, we’ll modify the .env file (create the .env file if it doesn’t exist). Add the URL of our Rest API to this file with the variable `REACT_APP_API_URI`
+
+`REACT_APP_API_URI=https://jqtd5xwfvf.execute-api.us-east-2.amazonaws.com/dev`
+
+The .env file will be at the same level as the package.json file and amplify directory
+
+Next, we need to install all the packages listed in package.json file. This will be as easy as running npm install in the root directory. Once the packages are installed, we can just go to the next step to publish the frontend.
+
+The frontend gets published to Amplify Hosting via a separate command 
+
+`amplify publish`
+
+This will reveal the public hosting URL for the Amplify application
+
+ Figure 3: AWS Amplify application deployment completion
+
+Executing amplify hosting status will also give the deployed URL for the application if we need it later.
+
+Next we’re going to setup the three user profiles. User “primaryowner1” owns the device and has full access to it. User “guest1” is presumed to have been invited by the device owner to operate the device and finally user “powercompany1” presumed to have added to the application through an OAuth like onboarding flow.
+
+Next, we’re going to sign up these three different user personas. Open AWS Amplify dashboard within AWS Console. You’ll notice after pushing the Amplify project, a new app has been added to the dashboard.
+![image](https://github.com/aws-samples/amazon-verified-permissions-iot-amplify-smart-home-application/assets/315179/7b6ec962-7f8a-43d1-81e7-4fc19c1384dc)
+
+
+
 
 ## Available Scripts for local development
 

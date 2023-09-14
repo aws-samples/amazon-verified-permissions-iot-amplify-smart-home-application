@@ -47,11 +47,12 @@ This will provision the backed in the cloud and will publish the web hosting to 
 
 Here’s a screenshot of the what the output may look like on your deployment
 
-![Screenshot1]([https://github.com/[username]/[reponame]/blob/[main]/images/screenshot1.png](https://github.com/aws-samples/amazon-verified-permissions-iot-amplify-smart-home-application/blob/main/images/screenshot1.png)?raw=true)
+
+![Screenshot1]([https://github.com/[username]/[reponame]/blob/[branch]/image.jpg](https://github.com/aws-samples/amazon-verified-permissions-iot-amplify-smart-home-application/blob/main/images/screenshot1.png)?raw=true)
 
 Figure 1: Sample AWS Amplify CLI output of project initialization and provisioning
 
-![Screenshot1]([[https://github.com/[username]/[reponame]/blob/[main]/images/screenshot1.png](https://github.com/aws-samples/amazon-verified-permissions-iot-amplify-smart-home-application/blob/main/images/screenshot1.png](https://github.com/aws-samples/amazon-verified-permissions-iot-amplify-smart-home-application/blob/main/images/screenshot2.png))?raw=true)
+![Screenshot2]([https://github.com/[username]/[reponame]/blob/[branch]/image.jpg](https://github.com/aws-samples/amazon-verified-permissions-iot-amplify-smart-home-application/blob/main/images/screenshot2.png)?raw=true)
 
 Figure 2: 
 

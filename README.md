@@ -62,12 +62,6 @@ This will reveal the public hosting URL for the Amplify application
 
 Executing amplify hosting status will also give the deployed URL for the application if we need it later.
 
-Next we’re going to setup the three user profiles. User “primaryowner1” owns the device and has full access to it. User “guest1” is presumed to have been invited by the device owner to operate the device and finally user “powercompany1” presumed to have added to the application through an OAuth like onboarding flow.
-
-Next, we’re going to sign up these three different user personas. Open AWS Amplify dashboard within AWS Console. You’ll notice after pushing the Amplify project, a new app has been added to the dashboard.
-![image](https://github.com/aws-samples/amazon-verified-permissions-iot-amplify-smart-home-application/assets/315179/7b6ec962-7f8a-43d1-81e7-4fc19c1384dc)
-
-
 
 
 ## Available Scripts for local development

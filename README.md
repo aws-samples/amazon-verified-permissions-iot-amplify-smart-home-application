@@ -17,7 +17,7 @@ Amplify deploys the following resources through AWS CloudFormation:
 * One Amazon Cognito User Pool for Authentication
 
 ## Deployment Instructions
-
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=[https://github.com/username/repository](https://github.com/aws-samples/amazon-verified-permissions-iot-amplify-smart-home-application))
 
 ## Development
 This frontend for this project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

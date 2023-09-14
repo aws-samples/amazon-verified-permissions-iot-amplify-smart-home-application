@@ -1,4 +1,4 @@
-# AWS IoT AVP Dashboard Demo
+# AWS IoT Amazon Verified Permissions Dashboard Demo
 This code accompanies the blog post "Leveraging Amazon Verified Permissions for managing authorization for AWS IoT Smart Thermostat applications".
 
 ## Description:

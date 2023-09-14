@@ -27,7 +27,7 @@ There are three steps to deploying this backend to Amplify easily:
 
 ## Development
 
-The GitHub repository contains the Amplify project we will use to deploy the dashboard in our AWS account. This dashboard is the user-facing application that the manufacturer provides via a web or mobile interface. Through this dashboard, you’ll be able to see how different API calls can be authorized for different personas. You’ll also be able to tweak different variables like current time to see how different users can interact with different parts of the dashboard. Let’s go ahead and set it up.
+This repository contains the source for the Amplify project we will use to deploy the dashboard in our AWS account. This dashboard is the user-facing application that the manufacturer provides via a web or mobile interface. Through this dashboard, you’ll be able to see how different API calls can be authorized for different personas. You’ll also be able to tweak different variables like current time to see how different users can interact with different parts of the dashboard. Let’s go ahead and set it up.
 
 Clone the repository by using this command:
 
@@ -46,6 +46,8 @@ Once the initialization is complete, simply run
 This will provision the backed in the cloud and will publish the web hosting to Amazon CloudFront via AWS Amplify. Notice that it warns us about IAM permissions on all resources, we’re doing that for this solution. As mentioned before, in production we highly recommend following the principle of least privilege as mentioned in our security best practices.
 
 Here’s a screenshot of the what the output may look like on your deployment
+
+![Screenshot1](https://github.com/[username]/[reponame]/blob/[main]/images/screenshot1.png?raw=true)
 
  Figure 1: Sample AWS Amplify CLI output of project initialization and provisioning
 
@@ -68,6 +70,8 @@ This will reveal the public hosting URL for the Amplify application
 
 Executing amplify hosting status will also give the deployed URL for the application if we need it later.
 
+
+![Screenshot1](https://github.com/[username]/[reponame]/blob/[main]/images/screenshot2.png?raw=true)
 
 
 ## Available Scripts for local development

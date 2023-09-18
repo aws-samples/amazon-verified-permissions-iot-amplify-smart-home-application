@@ -1,4 +1,4 @@
-# AWS IoT AVP Dashboard Demo
+# AWS IoT Amazon Verified Permissions Dashboard Demo
 This code accompanies the blog post "Leveraging Amazon Verified Permissions for managing authorization for AWS IoT Smart Thermostat applications".
 
 ## Description:
@@ -47,9 +47,14 @@ This will provision the backed in the cloud and will publish the web hosting to 
 
 Here’s a screenshot of the what the output may look like on your deployment
 
-![Screenshot1](https://github.com/[username]/[reponame]/blob/[main]/images/screenshot1.png?raw=true)
 
- Figure 1: Sample AWS Amplify CLI output of project initialization and provisioning
+![Screenshot1]([[https://github.com/[username]/[reponame]/blob/[branch]/image.jpg](https://github.com/aws-samples/amazon-verified-permissions-iot-amplify-smart-home-application/blob/main/images/screenshot1.png)](https://github.com/aws-samples/amazon-verified-permissions-iot-amplify-smart-home-application/blob/main/images/screenshot1.png)?raw=true)
+
+Figure 1: Sample AWS Amplify CLI output of project initialization and provisioning
+
+![Screenshot2]([https://github.com/[username]/[reponame]/blob/[branch]/image.jpg](https://github.com/aws-samples/amazon-verified-permissions-iot-amplify-smart-home-application/blob/main/images/screenshot2.png)?raw=true)
+
+Figure 2: 
 
 
 Once the provisioning process is complete. You’ll see the URL for the provisioned Rest API. Grab the Rest API URL and go to the root directory of the project. Here, we’ll modify the .env file (create the .env file if it doesn’t exist). Add the URL of our Rest API to this file with the variable `REACT_APP_API_URI`

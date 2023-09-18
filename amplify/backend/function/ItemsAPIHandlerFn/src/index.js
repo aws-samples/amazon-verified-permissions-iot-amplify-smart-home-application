@@ -6,8 +6,8 @@ import * as jwt from "jsonwebtoken";
 import {IoTDataPlaneClient, UpdateThingShadowCommand, GetThingShadowCommand} from "@aws-sdk/client-iot-data-plane";
 import {permissionsCheck} from '/opt/nodejs/permissions.mjs';  // This comes from custom code in the layer
 
-const TABLE_NAME = process.env.TABLE_NAME;
-const REGION = process.env.REGION
+const TABLE_NAME = 'UserMappingTable-dev';
+const REGION = 'us-east-2';
 
 // replace with your region
 const dynamodbClient = new DynamoDBClient({region: REGION});

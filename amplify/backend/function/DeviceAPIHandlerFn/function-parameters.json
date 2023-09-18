@@ -8,18 +8,5 @@
       "env": "dev"
     }
   ],
-  "environmentVariableList": [
-    {
-      "cloudFormationParameterName": "region",
-      "environmentVariableName": "REGION"
-    },
-    {
-      "cloudFormationParameterName": "tableName",
-      "environmentVariableName": "TABLE_NAME"
-    },
-    {
-      "cloudFormationParameterName": "policyStoreId",
-      "environmentVariableName": "POLICY_STORE_ID"
-    }
-  ]
+  "environmentVariableList": []
 }

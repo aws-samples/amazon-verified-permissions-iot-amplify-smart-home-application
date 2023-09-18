@@ -19,15 +19,6 @@
     "functionawsiotavpwebappAVPPermissionsLayerArn": {
       "Type": "String",
       "Default": "functionawsiotavpwebappAVPPermissionsLayerArn"
-    },
-    "region": {
-      "Type": "String"
-    },
-    "tableName": {
-      "Type": "String"
-    },
-    "policyStoreId": {
-      "Type": "String"
     }
   },
   "Conditions": {
@@ -79,15 +70,6 @@
           "Variables": {
             "ENV": {
               "Ref": "env"
-            },
-            "REGION": {
-              "Ref": "region"
-            },
-            "TABLE_NAME": {
-              "Ref": "tableName"
-            },
-            "POLICY_STORE_ID": {
-              "Ref": "policyStoreId"
             }
           }
         },

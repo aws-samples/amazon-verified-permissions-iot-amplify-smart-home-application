@@ -100,31 +100,7 @@
         }
       ]
     },
-    "AMPLIFY_function_DeviceAPIHandlerFn_policyStoreId": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "DeviceAPIHandlerFn"
-        }
-      ]
-    },
-    "AMPLIFY_function_DeviceAPIHandlerFn_region": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "DeviceAPIHandlerFn"
-        }
-      ]
-    },
     "AMPLIFY_function_DeviceAPIHandlerFn_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "DeviceAPIHandlerFn"
-        }
-      ]
-    },
-    "AMPLIFY_function_DeviceAPIHandlerFn_tableName": {
       "usedBy": [
         {
           "category": "function",

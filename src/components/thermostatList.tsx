@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 
 import {
-    Badge,
     Button,
     Card,
     Collection,
@@ -15,6 +14,7 @@ import {
     useTheme,
 } from "@aws-amplify/ui-react";
 import {Auth} from "@aws-amplify/auth";
+import {useGlobal} from "../context/globalContext";
 
 const {REACT_APP_API_URI} = process.env;
 
@@ -75,6 +75,17 @@ const handleInputChangeNoElement = (
 
 const ThermostatList = (props: ThermostatProps) => {
 
+    const {
+        globalTemperature,
+        setGlobalTemperature,
+        globalTimeHH,
+        setGlobalTimeHH,
+        globalTimeMM,
+        setGlobalTimeMM,
+        globalTimeMeridiem,
+        setGlobalTimeMeridiem,
+    } = useGlobal();
+
     const {items} = props;
     const [selectedTemperature, setSelectedTemperature] = useState<number[]>([0]);
     const [currentTemperature, setCurrentTemperature] = useState<number[]>([0]);
@@ -95,6 +106,8 @@ const ThermostatList = (props: ThermostatProps) => {
             },
             body: JSON.stringify({
                 action: "SetTemperature",
+                globalTemperature,
+                globalTime: `${globalTimeHH}:${globalTimeMM} ${globalTimeMeridiem}`,
                 ...payload
             })
         })
@@ -224,7 +237,7 @@ const ThermostatList = (props: ThermostatProps) => {
                                             makeSetTemperatureAPICall(item.deviceId, index, {
                                                 temperature: selectedTemperature[index],
                                                 power: currentPower[index],
-                                                mode: currentMode[index]
+                                                mode: currentMode[index],
                                             })
                                         }}
                                     >

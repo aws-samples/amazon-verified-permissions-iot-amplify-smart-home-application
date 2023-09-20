@@ -28,9 +28,8 @@ There are three steps to deploying this backend to Amplify easily:
 1. Fork this repository and change the following variables in the code.
 2. Navigate to `amplify/backend/function/awsiotavpwebappAVPPermissionsLayer/lib/nodejs/permissions.mjs`
    where `POLICY_STORE_ID` has been defined and change the value to your own Policy Store ID as mentioned in the blog.
-   Also modify `REGION` to the region you're using. Also change the `REGION` variable
-   under `amplify/backend/function/ItemsAPIHandlerFn/src/index.js`
-   and `amplify/backend/function/DeviceAPIHandlerFn/src/index.js`.
+   Also modify `REGION` to the region you're using. The `REGION` variable under `amplify/backend/function/ItemsAPIHandlerFn/src/index.js`
+   and `amplify/backend/function/DeviceAPIHandlerFn/src/index.js` should also be modified if you're using a region other than `us-east-2`
 3. Update the repository name in this README.md file below: Replace the username/repository link with your own forked
    repository's link.
 4. Finally log into your AWS Console with appropriate IAM permissions and click on the button below. This will deploy

@@ -1,4 +1,5 @@
-import React, {createContext, useContext} from "react";
+import React, {createContext, useContext} from 'react';
+
 import {format as formatDate} from "date-fns";
 
 // create a context called GlobalContext
@@ -35,8 +36,9 @@ const defaultContextValue: GlobalContextType = {
     }
 }
 
-const GlobalContext = createContext<GlobalContextType>(defaultContextValue);
+export const GlobalContext = createContext<GlobalContextType>(defaultContextValue);
 
 export const useGlobal = () => {
     return useContext(GlobalContext);
 };
+

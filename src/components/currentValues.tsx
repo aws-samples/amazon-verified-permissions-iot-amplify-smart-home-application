@@ -1,19 +1,31 @@
-import React, {useState} from "react";
+import React from "react";
 import {Button, Card, Flex, Heading, SelectField, TextField} from "@aws-amplify/ui-react";
-import {format as formatDate} from "date-fns";
+import {useGlobal} from "../context/globalContext";
 
 
 const CurrentValues = () => {
 
-    const currentTimestamp = new Date();
-    const currentHour = Number(formatDate(currentTimestamp, "h"));
-    const currentMinute = currentTimestamp.getMinutes();
-    const currentMeridian = currentTimestamp.getHours() >= 12 ? "PM" : "AM";
 
-    const [meridianSelectedValue, setMeridianSelectedValue] = useState(currentMeridian);
-    const [hourValue, setHourValue] = useState(currentHour);
-    const [minutesValue, setMinutesValue] = useState(currentMinute);
-    const [currentTemperature, setCurrentTemperature] = useState(72);
+    const {
+        globalTemperature,
+        setGlobalTemperature,
+        globalTimeHH,
+        setGlobalTimeHH,
+        globalTimeMM,
+        setGlobalTimeMM,
+        globalTimeMeridiem,
+        setGlobalTimeMeridiem,
+    } = useGlobal();
+
+    // const currentTimestamp = new Date();
+    // const currentHour = Number(formatDate(currentTimestamp, "h"));
+    // const currentMinute = currentTimestamp.getMinutes();
+    // const currentMeridian = currentTimestamp.getHours() >= 12 ? "PM" : "AM";
+
+    // const [meridianSelectedValue, setMeridianSelectedValue] = useState(currentMeridian);
+    // const [hourValue, setHourValue] = useState(currentHour);
+    // const [minutesValue, setMinutesValue] = useState(currentMinute);
+    // const [currentTemperature, setCurrentTemperature] = useState(72);
 
     return (
         <Card width={"40%"} variation="elevated">
@@ -26,8 +38,8 @@ const CurrentValues = () => {
                 <Card>
                     <TextField
                         type="number"
-                        value={currentTemperature}
-                        onChange={(e) => setCurrentTemperature(Number(e.target.value))}
+                        value={globalTemperature}
+                        onChange={(e) => setGlobalTemperature(Number(e.target.value))}
                         placeholder="72"
                         label="Outside Temperature (F)"
                     />
@@ -36,16 +48,16 @@ const CurrentValues = () => {
                     <Flex direction={"column"}>
                         <label>Set Time</label>
                         <Flex direction={"row"}>
-                            <TextField type={"number"} width={"20%"} label={"HH"} value={hourValue}
-                                       onChange={(e) => setHourValue(Number(e.target.value))}/>
-                            <TextField type={"number"} width={"20%"} label={"MM"} value={minutesValue}
+                            <TextField type={"number"} width={"20%"} label={"HH"} value={globalTimeHH}
+                                       onChange={(e) => setGlobalTimeHH(Number(e.target.value))}/>
+                            <TextField type={"number"} width={"20%"} label={"MM"} value={globalTimeMM}
                                        onChange={(e) => {
-                                           setMinutesValue(Number(e.target.value))
+                                           setGlobalTimeMM(Number(e.target.value))
                                        }}/>
                             <SelectField
                                 label="AM/PM"
-                                value={meridianSelectedValue}
-                                onChange={(e) => setMeridianSelectedValue(e.target.value)}
+                                value={globalTimeMeridiem}
+                                onChange={(e) => setGlobalTimeMeridiem(e.target.value)}
                             >
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>

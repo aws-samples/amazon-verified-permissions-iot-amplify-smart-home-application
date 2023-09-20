@@ -77,13 +77,9 @@ const ThermostatList = (props: ThermostatProps) => {
 
     const {
         globalTemperature,
-        setGlobalTemperature,
         globalTimeHH,
-        setGlobalTimeHH,
         globalTimeMM,
-        setGlobalTimeMM,
         globalTimeMeridiem,
-        setGlobalTimeMeridiem,
     } = useGlobal();
 
     const {items} = props;
@@ -91,7 +87,6 @@ const ThermostatList = (props: ThermostatProps) => {
     const [currentTemperature, setCurrentTemperature] = useState<number[]>([0]);
     const [currentMode, setCurrentMode] = useState<string[]>(["Auto"]);
     const [currentPower, setCurrentPower] = useState<boolean[]>([false]);
-    // const [tags, setTags] = useState<string[]>([]);
     const [jwt, setJWT] = useState<string>("");
 
     const {tokens} = useTheme();

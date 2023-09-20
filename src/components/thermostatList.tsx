@@ -127,6 +127,44 @@ const ThermostatList = (props: ThermostatProps) => {
             })
     }
 
+    const makeGetTemperatureAPICall = (deviceId: string, index: number) => {
+        fetch(`${REACT_APP_API_URI}/control/${deviceId}`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${jwt}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                action: "GetTemperature",
+                globalTemperature,
+                globalTime: `${globalTimeHH}:${globalTimeMM} ${globalTimeMeridiem}`,
+            })
+        })
+            .then(res => {
+                res.json()
+                    .then(data => {
+                        console.log(data);
+                        // set the appropriate state
+                        handleInputChangeNoElement(data.temperature, index, currentTemperature, setCurrentTemperature);
+                        handleInputChangeNoElement(data.power, index, currentPower, setCurrentPower);
+                        handleInputChangeNoElement(data.mode, index, currentMode, setCurrentMode);
+                        alert("GetTemperature API called successfully");
+                    })
+                    .catch(e => {
+                        console.log("Failed to decode JSON");
+                        console.log(e);
+                    })
+            })
+            .catch(err => {
+                console.log("Failed to make API call");
+                console.log(err);
+            })
+    }
+
+
+
+
     useEffect(() => {
 
         Auth.currentSession()
@@ -244,7 +282,10 @@ const ThermostatList = (props: ThermostatProps) => {
                                         colorTheme={"success"}
                                         onClick={() => {
 
+                                            makeGetTemperatureAPICall(item.deviceId, index)
+
                                         }}
+
                                     >
                                         GetTemperature
                                     </Button>

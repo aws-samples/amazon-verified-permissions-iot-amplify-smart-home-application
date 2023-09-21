@@ -23,22 +23,6 @@ Amplify deploys the following resources through AWS CloudFormation:
 
 ## Deployment Instructions
 
-There are three steps to deploying this backend to Amplify easily:
-
-1. Fork this repository and change the following variables in the code.
-2. Navigate to `amplify/backend/function/awsiotavpwebappAVPPermissionsLayer/lib/nodejs/permissions.mjs`
-   where `POLICY_STORE_ID` has been defined and change the value to your own Policy Store ID as mentioned in the blog.
-   Also modify `REGION` to the region you're using. The `REGION` variable under `amplify/backend/function/ItemsAPIHandlerFn/src/index.js`
-   and `amplify/backend/function/DeviceAPIHandlerFn/src/index.js` should also be modified if you're using a region other than `us-east-2`
-3. Update the repository name in this README.md file below: Replace the username/repository link with your own forked
-   repository's link.
-4. Finally log into your AWS Console with appropriate IAM permissions and click on the button below. This will deploy
-   the application to AWS Amplify in your account.
-
-[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/username/repository)
-
-## Development
-
 This repository contains the source for the Amplify project we will use to deploy the dashboard in our AWS account. This
 dashboard is the user-facing application that the manufacturer provides via a web or mobile interface. Through this
 dashboard, you’ll be able to see how different API calls can be authorized for different personas. You’ll also be able

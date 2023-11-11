@@ -13,7 +13,7 @@
     "@types/node": "^16.18.41",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
-    "aws-amplify": "^5.3.8",
+    "aws-amplify": "^5.3.12",
     "date-fns": "^2.30.0",
     "node-fetch": "^3.3.2",
     "react": "^18.2.0",

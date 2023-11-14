@@ -7,7 +7,7 @@ import {IoTDataPlaneClient, UpdateThingShadowCommand, GetThingShadowCommand} fro
 import {permissionsCheck} from '/opt/nodejs/permissions.mjs';  // This comes from custom code in the layer
 
 const TABLE_NAME = 'UserMappingTable-dev';
-const REGION = 'us-east-2';
+const REGION = 'us-east-1';
 
 // replace with your region
 const dynamodbClient = new DynamoDBClient({region: REGION});

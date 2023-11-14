@@ -3,6 +3,6 @@
   "description": "",
   "type": "module",
   "dependencies": {
-    "@aws-sdk/client-verifiedpermissions": "^3.399.0"
+    "@aws-sdk/client-verifiedpermissions": "^3.449.0"
   }
 }

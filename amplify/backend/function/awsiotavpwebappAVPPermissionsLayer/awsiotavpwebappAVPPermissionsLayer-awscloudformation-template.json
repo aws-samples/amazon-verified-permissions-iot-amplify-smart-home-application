@@ -20,7 +20,7 @@
     }
   },
   "Resources": {
-    "LambdaLayerVersiona02a977a": {
+    "LambdaLayerVersion1c897d0f": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
         "CompatibleRuntimes": {
@@ -51,19 +51,19 @@
       "DeletionPolicy": "Delete",
       "UpdateReplacePolicy": "Retain"
     },
-    "LambdaLayerPermissionPrivatea02a977a": {
+    "LambdaLayerPermissionPrivate1c897d0f": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
         "LayerVersionArn": {
-          "Ref": "LambdaLayerVersiona02a977a"
+          "Ref": "LambdaLayerVersion1c897d0f"
         },
         "Principal": {
           "Ref": "AWS::AccountId"
         }
       }
     },
-    "LambdaLayerVersion9d5597f6": {
+    "LambdaLayerVersion817b3329": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
         "CompatibleRuntimes": [
@@ -73,9 +73,9 @@
           "S3Bucket": {
             "Ref": "deploymentBucketName"
           },
-          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion9d5597f6-build.zip"
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion817b3329-build.zip"
         },
-        "Description": "Updated layer version 2023-09-01T09:30:46.265Z",
+        "Description": "Updated layer version 2023-11-13T19:14:46.582Z",
         "LayerName": {
           "Fn::Sub": [
             "awsiotavpwebappAVPPermissionsLayer-${env}",
@@ -90,17 +90,17 @@
       "DeletionPolicy": "Delete",
       "UpdateReplacePolicy": "Retain"
     },
-    "LambdaLayerPermissionPrivate9d5597f6": {
+    "LambdaLayerPermissionPrivate817b3329": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
-        "LayerVersionArn": "arn:aws:lambda:us-east-2:859008329744:layer:awsiotavpwebappAVPPermissionsLayer-dev:3",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:37",
         "Principal": {
           "Ref": "AWS::AccountId"
         }
       }
     },
-    "LambdaLayerVersionded6682b": {
+    "LambdaLayerVersionb3a8cda9": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
         "CompatibleRuntimes": [
@@ -110,9 +110,9 @@
           "S3Bucket": {
             "Ref": "deploymentBucketName"
           },
-          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersionded6682b-build.zip"
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersionb3a8cda9-build.zip"
         },
-        "Description": "Updated layer version 2023-09-01T09:20:11.986Z",
+        "Description": "Updated layer version 2023-11-13T19:00:06.055Z",
         "LayerName": {
           "Fn::Sub": [
             "awsiotavpwebappAVPPermissionsLayer-${env}",
@@ -127,17 +127,17 @@
       "DeletionPolicy": "Delete",
       "UpdateReplacePolicy": "Retain"
     },
-    "LambdaLayerPermissionPrivateded6682b": {
+    "LambdaLayerPermissionPrivateb3a8cda9": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
-        "LayerVersionArn": "arn:aws:lambda:us-east-2:859008329744:layer:awsiotavpwebappAVPPermissionsLayer-dev:2",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:36",
         "Principal": {
           "Ref": "AWS::AccountId"
         }
       }
     },
-    "LambdaLayerVersion5ae67eb8": {
+    "LambdaLayerVersionb6b28946": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
         "CompatibleRuntimes": [
@@ -147,9 +147,9 @@
           "S3Bucket": {
             "Ref": "deploymentBucketName"
           },
-          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion5ae67eb8-build.zip"
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersionb6b28946-build.zip"
         },
-        "Description": "Updated layer version 2023-09-01T07:52:37.751Z",
+        "Description": "Updated layer version 2023-11-11T06:22:09.427Z",
         "LayerName": {
           "Fn::Sub": [
             "awsiotavpwebappAVPPermissionsLayer-${env}",
@@ -164,11 +164,1269 @@
       "DeletionPolicy": "Delete",
       "UpdateReplacePolicy": "Retain"
     },
-    "LambdaLayerPermissionPrivate5ae67eb8": {
+    "LambdaLayerPermissionPrivateb6b28946": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
-        "LayerVersionArn": "arn:aws:lambda:us-east-2:859008329744:layer:awsiotavpwebappAVPPermissionsLayer-dev:1",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:35",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion3a34bbe3": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion3a34bbe3-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T06:06:56.488Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate3a34bbe3": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:34",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersionaab7e170": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersionaab7e170-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T05:56:32.200Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivateaab7e170": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:33",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion8abc1b71": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion8abc1b71-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T05:45:40.746Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate8abc1b71": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:32",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion4f0900d1": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion4f0900d1-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T05:36:37.514Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate4f0900d1": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:31",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion2d91ee69": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion2d91ee69-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T05:31:07.424Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate2d91ee69": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:30",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersiona7ffd55c": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersiona7ffd55c-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T05:20:21.643Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivatea7ffd55c": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:29",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion717ca7b9": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion717ca7b9-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T05:15:57.091Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate717ca7b9": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:28",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion99daed52": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion99daed52-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T05:10:31.353Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate99daed52": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:27",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion55e5b502": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion55e5b502-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T05:04:02.052Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate55e5b502": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:26",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion3ce0346f": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion3ce0346f-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T04:55:23.965Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate3ce0346f": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:25",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion7554211b": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion7554211b-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T04:52:13.713Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate7554211b": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:24",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion78c8e33b": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion78c8e33b-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T04:34:12.536Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate78c8e33b": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:23",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersionfbe2920a": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersionfbe2920a-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T04:30:31.980Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivatefbe2920a": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:22",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion4fac3b50": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion4fac3b50-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T04:09:52.853Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate4fac3b50": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:21",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersioncbd21fd9": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersioncbd21fd9-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T04:00:04.766Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivatecbd21fd9": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:20",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersionb1291873": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersionb1291873-build.zip"
+        },
+        "Description": "Updated layer version 2023-11-11T03:50:54.053Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivateb1291873": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:19",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersionaa272565": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersionaa272565-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T03:41:55.715Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivateaa272565": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:18",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion8d4fab8a": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion8d4fab8a-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T03:36:56.461Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate8d4fab8a": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:17",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersionb54bef98": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersionb54bef98-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T03:30:41.899Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivateb54bef98": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:16",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion8a407890": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion8a407890-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T03:17:05.334Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate8a407890": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:15",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion9ac0913f": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion9ac0913f-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T02:48:34.510Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate9ac0913f": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:14",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersionae45b14c": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersionae45b14c-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T02:45:21.801Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivateae45b14c": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:13",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion5066fe1d": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion5066fe1d-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T02:42:34.952Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate5066fe1d": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:12",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion68975279": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion68975279-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T02:38:18.232Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate68975279": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:11",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion7426caf8": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion7426caf8-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T02:34:56.446Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate7426caf8": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:10",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion3920dd28": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion3920dd28-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T02:26:52.254Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate3920dd28": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:9",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion19a8911f": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion19a8911f-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T02:05:44.753Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate19a8911f": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:8",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersiond4db9f31": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersiond4db9f31-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T02:01:31.695Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivated4db9f31": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:7",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersiona2c2b4bb": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersiona2c2b4bb-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T01:57:39.756Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivatea2c2b4bb": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:6",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion3c09909f": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersion3c09909f-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T01:48:30.188Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate3c09909f": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:5",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersiondaf27ee2": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersiondaf27ee2-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T01:42:27.969Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivatedaf27ee2": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:4",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersionc12c72f0": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersionc12c72f0-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T01:35:55.567Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivatec12c72f0": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:3",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersiond53e2d56": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersiond53e2d56-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-05T01:23:49.340Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivated53e2d56": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:2",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersiondc0fae6d": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/awsiotavpwebappAVPPermissionsLayer-LambdaLayerVersiondc0fae6d-build.zip"
+        },
+        "Description": "Updated layer version 2023-09-01T17:35:52.243Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "awsiotavpwebappAVPPermissionsLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivatedc0fae6d": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-1:632087055560:layer:awsiotavpwebappAVPPermissionsLayer-dev:1",
         "Principal": {
           "Ref": "AWS::AccountId"
         }
@@ -178,7 +1436,7 @@
   "Outputs": {
     "Arn": {
       "Value": {
-        "Ref": "LambdaLayerVersiona02a977a"
+        "Ref": "LambdaLayerVersion1c897d0f"
       }
     }
   }

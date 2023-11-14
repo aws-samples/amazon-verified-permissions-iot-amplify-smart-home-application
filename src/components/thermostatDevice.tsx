@@ -37,55 +37,55 @@ const ThermostatDevice = ({deviceId, primaryOwner}: ThermostatDeviceProps) => {
 
     const {tokens} = useTheme();
 
-    // useEffect(() => {
-    //     console.log("Use effect called under ThermostatDevice");
-    //     setName(deviceId);
-    //     setTags(["Smart Thermostat", "Home1"]);
-    //
-    //     Auth.currentSession()
-    //         .then(response => {
-    //             let accessToken = response.getAccessToken()
-    //             let jwt = accessToken.getJwtToken();
-    //
-    //             console.log(`Sending JWT ${jwt}`);
-    //
-    //             fetch(`${REACT_APP_API_URI}/data/${deviceId}`, {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'Authorization': `Bearer ${jwt}`
-    //                 },
-    //                 body: JSON.stringify({
-    //                     deviceId,
-    //                     action: "getTemperature",
-    //                 })
-    //
-    //             })
-    //                 .then(res => {
-    //                     console.log(res);
-    //                     return res.json()
-    //                         .then(data => {
-    //                             console.log(data);
-    //                             setCurrentTemperature(data.temperature);
-    //                             setCurrentMode(data.mode);
-    //                             setCurrentPower(data.power);
-    //                         })
-    //                         .catch(e => {
-    //                             console.log(e);
-    //                         });
-    //                 })
-    //                 .catch(e => {
-    //                     console.log(e);
-    //
-    //                 }).catch(e => {
-    //                 console.log(e);
-    //             });
-    //
-    //         })
-    //         .catch(e => {
-    //             console.log("Error getting current session");
-    //             console.log(e)
-    //         });
-    // }, []);
+    useEffect(() => {
+        console.log("Use effect called under ThermostatDevice");
+        setName(deviceId);
+        setTags(["Smart Thermostat", "Home1"]);
+    
+        Auth.currentSession()
+            .then(response => {
+                let accessToken = response.getAccessToken()
+                let jwt = accessToken.getJwtToken();
+    
+                console.log(`Sending JWT ${jwt}`);
+    
+                fetch(`${REACT_APP_API_URI}/control/${deviceId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${jwt}`
+                    },
+                    body: JSON.stringify({
+                        deviceId,
+                        action: "GetTemperature",
+                    })
+    
+                })
+                    .then(res => {
+                        console.log(res);
+                        return res.json()
+                            .then(data => {
+                                console.log(data);
+                                setCurrentTemperature(data.state.reported.temperature);
+                                setCurrentMode(data.state.reported.data.mode);
+                                setCurrentPower(data.state.reported.data.power);
+                            })
+                            .catch(e => {
+                                console.log(e);
+                            });
+                    })
+                    .catch(e => {
+                        console.log(e);
+    
+                    }).catch(e => {
+                    console.log(e);
+                });
+    
+            })
+            .catch(e => {
+                console.log("Error getting current session");
+                console.log(e)
+            });
+    }, []);
 
     return <Card
         borderRadius="medium"

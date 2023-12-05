@@ -14,7 +14,7 @@ const POLICY_STORE_ID = "P44TB9Z3rwaLp56D9WMJcP"; //process.env.POLICY_STORE_ID;
 const client = new VerifiedPermissionsClient({ region: REGION });
 const avp = new VerifiedPermissions(client);
 const entity = (entityType, entityId) => ({
-  entityType: entityType,
+  entityType: `AwsIotAvpWebApp::${entityType}`,
   entityId: String(entityId),
 });
 
@@ -44,7 +44,7 @@ const permissionsCheck = async (avpPrincipal, action, resource) => {
   const args = {
     policyStoreId: POLICY_STORE_ID,
     principal: entity("User", avpPrincipal),
-    action: { actionType: "Action", actionId: action },
+    action: { actionType: "AwsIotAvpWebApp::Action", actionId: action },
     resource: entity("Device", resource.deviceId),
   };
 
@@ -73,24 +73,24 @@ const permissionsCheck = async (avpPrincipal, action, resource) => {
     };
   }
 
-  // // Conditionally add time if it exists
-  // if (
-  //   resource.state &&
-  //   resource.state.desired &&
-  //   resource.state.desired.time !== undefined
-  // ) {
-  //   args.context.contextMap.time = { long: resource.state.desired.time };
-  // }
+  // Conditionally add time if it exists
+  if (
+    resource.state &&
+    resource.state.desired &&
+    resource.state.desired.time !== undefined
+  ) {
+    args.context.contextMap.time = { long: resource.state.desired.time };
+  }
 
-  // // Update args.entities
-  // args.entities = {
-  //   entityList: [
-  //     {
-  //       identifier: entity("Device", resource.deviceId),
-  //       attributes: attributes(dynamicAttributes),
-  //     },
-  //   ],
-  // };
+  // Update args.entities
+  args.entities = {
+    entityList: [
+      {
+        identifier: entity("Device", resource.deviceId),
+        attributes: attributes(dynamicAttributes),
+      },
+    ],
+  };
 
   args.context = {
     contextMap: {

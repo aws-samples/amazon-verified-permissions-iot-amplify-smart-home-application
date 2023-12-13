@@ -43,24 +43,27 @@ against your AWS account. This is a good checkpoint to make sure we’re deployi
 blog post we’re relying on us-east-2. No matter which region you end up choosing, we want to be consistent across all
 services.
 
+![amplify-init.png](images%2Famplify-init.png)
+
 Once the initialization is complete, simply run
 
 `amplify push`
 
 This will provision the backed in the cloud and will publish the web hosting to Amazon CloudFront via AWS Amplify.
-Notice that it warns us about IAM permissions on all resources, we’re doing that for this solution. As mentioned before,
-in production we highly recommend following the principle of least privilege as mentioned in our security best
-practices.
+Notice that it warns us about IAM permissions on all resources, we’re doing that for this solution. For production use-cases we highly recommend following the principle of least privileges as mentioned in our [security best
+practices](https://docs.aws.amazon.com/wellarchitected/latest/framework/sec_permissions_least_privileges.html).
 
-Once the provisioning process is complete. You’ll see the URL for the provisioned Rest API. Grab the Rest API URL and go
-to the root directory of the project. Here, we’ll modify the .env file (create the .env file if it doesn’t exist). Add
+Once the provisioning process is complete. You’ll see the URL for the provisioned Rest API. Grab the Rest API endpoint URL and go
+to the root directory of the project. Here, we’ll modify the .env file (create the .env file if it does not exist). Add
 the URL of our Rest API to this file with the variable `REACT_APP_API_URI`
 
-`REACT_APP_API_URI=https://jqtd5xwfvf.execute-api.us-east-2.amazonaws.com/dev`
+![restapi-url.jpg](images%2Frestapi-url.jpg)
+
+`REACT_APP_API_URI=https://<custom url here>.execute-api.us-east-2.amazonaws.com/dev`
 
 The .env file will be at the same level as the package.json file and amplify directory
 
-Next, we need to install all the packages listed in package.json file. This will be as easy as running npm install in
+Next, we need to install all the packages listed in package.json file. This will be as easy as running `npm install` in
 the root directory. Once the packages are installed, we can just go to the next step to publish the frontend.
 
 The frontend gets published to Amplify Hosting via a separate command

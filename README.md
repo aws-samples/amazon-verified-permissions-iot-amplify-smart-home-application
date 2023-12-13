@@ -74,28 +74,31 @@ This will reveal the public hosting URL for the Amplify application
 
 Executing amplify hosting status will also give the deployed URL for the application if we need it later.
 
+## User management
 
-## Available Scripts for local development
+At this point our application is published and provisioned in the cloud. We're now going to add users to our application.
 
-In the project directory, you can run the following commands to develop the react application locally
+Navigate to the Amplify console in your chosen region. You should see the project is already published. 
 
-### `npm start`
+![amplify-apps.png](images%2Famplify-apps.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Click on the awsiotavpwebapp and navigate to the Backend environment and click lick on the button that says Set up Amplify Studio
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![amplify-backend.png](images%2Famplify-backend.png)
 
-### `npm run build`
+This will take you to the Amplify Studio Settings page as shown below. Enable Amplify Studio using the sliding button from Off to On.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![amplify-studio.png](images%2Famplify-studio.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Note: You’ll see “Invite Users” on the same page after you turn on Studio. This screen lets you invite users to access Amplify Studio. This is not where you add users for your application. We will do that in the next step.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Navigate back to the Backend environments as shown in the screenshot below. You’ll now see the highlighted button “Launch Studio”. This will open a new tab/pop-up. (Check your browser pop-up preferences if a new window doesn’t open)
+
+![launch-studio-button.png](images%2Flaunch-studio-button.png)
+
+Next head to “User Management” as shown in the screenshot below. Here we’ll add three new users. This action for creating three users - the device owner will have username “jack” and a unique email. 
+
+![amplify-user-management.png](images%2Famplify-user-management.png)
 
 ## Clean Up
 

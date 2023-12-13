@@ -23,7 +23,7 @@ export default function App() {
             Header() {
                 return (
                     <Heading level={2} textAlign="center">
-                        AWS IoT AVP Demo Dashboard
+                        AWS IoT Amazon Verified Permissions Demo
                     </Heading>
                 )
             },

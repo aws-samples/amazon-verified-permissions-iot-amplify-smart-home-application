@@ -7,12 +7,12 @@
             "S": "Thermostat1"
           },
           "primaryOwner": {
-            "S": "primaryowner1"
+            "S": "john_doe"
           },
           "additionalUsers": {
             "SS": [
               "guest1",
-              "powercompany1"
+              "powercompany"
             ]
           }
         }
@@ -25,11 +25,11 @@
             "S": "Thermostat2"
           },
           "primaryOwner": {
-            "S": "guest1"
+            "S": "jane_doe"
           },
           "additionalUsers": {
             "SS": [
-              "powercompany1"
+              "powercompany"
             ]
           }
         }

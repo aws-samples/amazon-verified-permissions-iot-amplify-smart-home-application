@@ -5,6 +5,9 @@ Thermostat applications".
 
 ## Description:
 
+Note: You will need the policy store ID from Amazon Verified Permissions to successfully call the permissions function.
+Please follow the instructions on the blog before attempting to deploy this dashboard.
+
 This is an AWS Amplify application that deploys a demo IoT device dashboard. The frontend for this application has been
 built using React JS and the backed is hosted on AWS using AWS Amplify.
 
@@ -50,10 +53,12 @@ Once the initialization is complete, simply run
 `amplify push`
 
 This will provision the backed in the cloud and will publish the web hosting to Amazon CloudFront via AWS Amplify.
-Notice that it warns us about IAM permissions on all resources, we’re doing that for this solution. For production use-cases we highly recommend following the principle of least privileges as mentioned in our [security best
+Notice that it warns us about IAM permissions on all resources, we’re doing that for this solution. For production
+use-cases we highly recommend following the principle of least privileges as mentioned in our [security best
 practices](https://docs.aws.amazon.com/wellarchitected/latest/framework/sec_permissions_least_privileges.html).
 
-Once the provisioning process is complete. You’ll see the URL for the provisioned Rest API. Grab the Rest API endpoint URL and go
+Once the provisioning process is complete. You’ll see the URL for the provisioned Rest API. Grab the Rest API endpoint
+URL and go
 to the root directory of the project. Here, we’ll modify the .env file (create the .env file if it does not exist). Add
 the URL of our Rest API to this file with the variable `REACT_APP_API_URI`
 
@@ -76,27 +81,33 @@ Executing amplify hosting status will also give the deployed URL for the applica
 
 ## User management
 
-At this point our application is published and provisioned in the cloud. We're now going to add users to our application.
+At this point our application is published and provisioned in the cloud. We're now going to add users to our
+application.
 
-Navigate to the Amplify console in your chosen region. You should see the project is already published. 
+Navigate to the Amplify console in your chosen region. You should see the project is already published.
 
 ![amplify-apps.png](images%2Famplify-apps.png)
 
-Click on the awsiotavpwebapp and navigate to the Backend environment and click lick on the button that says Set up Amplify Studio
+Click on the awsiotavpwebapp and navigate to the Backend environment and click lick on the button that says Set up
+Amplify Studio
 
 ![amplify-backend.png](images%2Famplify-backend.png)
 
-This will take you to the Amplify Studio Settings page as shown below. Enable Amplify Studio using the sliding button from Off to On.
+This will take you to the Amplify Studio Settings page as shown below. Enable Amplify Studio using the sliding button
+from Off to On.
 
 ![amplify-studio.png](images%2Famplify-studio.png)
 
-Note: You’ll see “Invite Users” on the same page after you turn on Studio. This screen lets you invite users to access Amplify Studio. This is not where you add users for your application. We will do that in the next step.
+Note: You’ll see “Invite Users” on the same page after you turn on Studio. This screen lets you invite users to access
+Amplify Studio. This is not where you add users for your application. We will do that in the next step.
 
-Navigate back to the Backend environments as shown in the screenshot below. You’ll now see the highlighted button “Launch Studio”. This will open a new tab/pop-up. (Check your browser pop-up preferences if a new window doesn’t open)
+Navigate back to the Backend environments as shown in the screenshot below. You’ll now see the highlighted button
+“Launch Studio”. This will open a new tab/pop-up. (Check your browser pop-up preferences if a new window doesn’t open)
 
 ![launch-studio-button.png](images%2Flaunch-studio-button.png)
 
-Next head to “User Management” as shown in the screenshot below. Here we’ll add three new users. This action for creating three users - the device owner will have username “john_doe” and a unique email.  
+Next head to “User Management” as shown in the screenshot below. Here we’ll add three new users. This action for
+creating three users - the device owner will have username “john_doe” and a unique email.
 
 ![amplify-user-management.png](images%2Famplify-user-management.png)
 
@@ -114,7 +125,12 @@ Here's a screenshot showing how you can do that in the "User Management" section
 
 ![create-user.png](images%2Fcreate-user.png)
 
-At this point, we’re going to add all three users and their device mappings into our DynamoDB table. Navigate to the root of your project and check users.json file which should have the following code in there. Notice the first key in this JSON file is the name of the DynamoDB table we’re pushing this data to. Modify that based on changes you make to your code. For the purpose of this demo, we’re naming our table UserMappingTable. Amplify adds the “dev” suffix based on the Amplify environment we’re operating in. For more information on this topic consult this documentation
+At this point, we’re going to add all three users and their device mappings into our DynamoDB table. Navigate to the
+root of your project and check users.json file which should have the following code in there. Notice the first key in
+this JSON file is the name of the DynamoDB table we’re pushing this data to. Modify that based on changes you make to
+your code. For the purpose of this demo, we’re naming our table UserMappingTable. Amplify adds the “dev” suffix based on
+the Amplify environment we’re operating in. For more information on this topic consult this documentation
+
 ```json
 {
   "UserMappingTable-dev": [
@@ -156,10 +172,17 @@ At this point, we’re going to add all three users and their device mappings in
   ]
 }
 ```
-Insert this data into your provisioned table by executing the following command in the root of your project directory. This command assumes you have a default region set in your profile or environment variables.
+
+Insert this data into your provisioned table by executing the following command in the root of your project directory.
+This command assumes you have a default region set in your profile or environment variables.
 
 `aws dynamodb batch-write-item --request-items file://users.json --region us-east-2 `
 
+In practice, this process will be automated through the invite and sign-up system. After a device owner claims a device,
+they can invite a person to join their home or application and choose the role at invitation. So, when a new user clicks
+on a link to sign-up their role information is supplied either through the URL or through an internal “invitation code
+to role mapping table”. Upon sign-up and confirmation, a new record is created in the table which has a mapping of user
+to device.
 
 ## Clean Up
 

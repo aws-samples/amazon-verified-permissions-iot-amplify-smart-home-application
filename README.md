@@ -96,9 +96,70 @@ Navigate back to the Backend environments as shown in the screenshot below. You�
 
 ![launch-studio-button.png](images%2Flaunch-studio-button.png)
 
-Next head to “User Management” as shown in the screenshot below. Here we’ll add three new users. This action for creating three users - the device owner will have username “jack” and a unique email. 
+Next head to “User Management” as shown in the screenshot below. Here we’ll add three new users. This action for creating three users - the device owner will have username “john_doe” and a unique email.  
 
 ![amplify-user-management.png](images%2Famplify-user-management.png)
+
+We'll add the following three users with the usernames and add the mapping to our DynamoDB table.
+
+| Resource    | Username     | 
+|-------------|--------------|
+| Thermostat1 | john_doe     |
+| Thermostat1 | jane_doe     |
+| Thermostat1 | powercompany |
+| Thermostat2 | jane_doe     |
+| Thermostat2 | powercompany |
+
+Here's a screenshot showing how you can do that in the "User Management" section of the Amplify Dashboard
+
+![create-user.png](images%2Fcreate-user.png)
+
+At this point, we’re going to add all three users and their device mappings into our DynamoDB table. Navigate to the root of your project and check users.json file which should have the following code in there. Notice the first key in this JSON file is the name of the DynamoDB table we’re pushing this data to. Modify that based on changes you make to your code. For the purpose of this demo, we’re naming our table UserMappingTable. Amplify adds the “dev” suffix based on the Amplify environment we’re operating in. For more information on this topic consult this documentation
+```json
+{
+  "UserMappingTable-dev": [
+    {
+      "PutRequest": {
+        "Item": {
+          "deviceId": {
+            "S": "Thermostat1"
+          },
+          "primaryOwner": {
+            "S": "john_doe"
+          },
+          "additionalUsers": {
+            "SS": [
+              "jane_doe",
+              "powercompany"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "deviceId": {
+            "S": "Thermostat2"
+          },
+          "primaryOwner": {
+            "S": "jane_doe"
+          },
+          "additionalUsers": {
+            "SS": [
+              "powercompany"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
+```
+Insert this data into your provisioned table by executing the following command in the root of your project directory. This command assumes you have a default region set in your profile or environment variables.
+
+`aws dynamodb batch-write-item --request-items file://users.json --region us-east-2 `
+
 
 ## Clean Up
 

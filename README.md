@@ -32,6 +32,8 @@ dashboard, you’ll be able to see how different API calls can be authorized for
 to tweak different variables like current time to see how different users can interact with different parts of the
 dashboard.
 
+Please create the policies in Amazon Verified Permissions before proceeding to deployment.
+
 Clone the repository by using this command:
 
 `git clone https://github.com/aws-samples/amazon-verified-permissions-iot-amplify-smart-home-application.git`
@@ -47,6 +49,11 @@ blog post we’re relying on us-east-2. No matter which region you end up choosi
 services.
 
 ![amplify-init.png](images%2Famplify-init.png)
+
+At this point we want to update all variables and makes sure our application knows where to go for the resources it needs. Update the following:
+1. Navigate to `amplify/backend/function/awsiotavpwebappAVPPermissionsLayer/lib/nodejs/permissions.mjs` and update variables `POLICY_STORE_ID`. Also update `REGION` (if changed)
+2. Navigate to `amplify/backend/function/ItemsAPIHandlerFn/src/index.js` and update variable `REGION` (if changed)
+3. Navigate to `amplify/backend/function/DeviceAPIHandlerFn/src/index.js` and update variable `REGION` (if changed)
 
 Once the initialization is complete, simply run
 

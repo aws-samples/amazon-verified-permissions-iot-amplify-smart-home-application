@@ -68,6 +68,7 @@ const handleInputChangeNoElement = (
     setStateFunction: React.Dispatch<React.SetStateAction<any[]>>
 ) => {
 
+    console.log(`${currentArray}, ${newValue}`);
     const newState = [...currentArray];
     newState[index] = newValue;
     setStateFunction(newState);
@@ -148,9 +149,9 @@ const ThermostatList = (props: ThermostatProps) => {
                     .then(data => {
                         console.log(data);
                         // set the appropriate state
-                        handleInputChangeNoElement(data.reportedTemperature, index, currentTemperature, setCurrentTemperature);
-                        handleInputChangeNoElement(data.power, index, currentPower, setCurrentPower);
-                        handleInputChangeNoElement(data.mode, index, currentMode, setCurrentMode);
+                        handleInputChangeNoElement(data.payload.reportedTemperature, index, currentTemperature, setCurrentTemperature);
+                        handleInputChangeNoElement(data.payload.power, index, currentPower, setCurrentPower);
+                        handleInputChangeNoElement(data.payload.mode, index, currentMode, setCurrentMode);
                         alert(`GetTemperature API called successfully`);
                         setAlert(JSON.stringify(data.evaluation, null, 2));
                     })
@@ -189,6 +190,7 @@ const ThermostatList = (props: ThermostatProps) => {
                 wrap="nowrap"
             >
                 {(item, index) => (
+                    
                     <Card
                         key={index}
                         borderRadius="medium"
@@ -207,7 +209,7 @@ const ThermostatList = (props: ThermostatProps) => {
                             <Heading
                                 level={2}
                             >
-                                {currentTemperature}
+                                {currentTemperature[index]}
                             </Heading>
                         </Flex>
                         <View padding="xs">

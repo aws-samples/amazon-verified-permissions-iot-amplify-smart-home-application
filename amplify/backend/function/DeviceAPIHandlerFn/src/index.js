@@ -86,10 +86,10 @@ async function getTemperature(thingName) {
         }
     };
 
-    const decision = await permissions.permissionsCheck(decoded.payload.username, action, shadow);
-    console.log(`Decision: ${decision}`);
+    const evaluation = await permissions.permissionsCheck(decoded.payload.username, action, shadow);
+    console.log(`Decision: ${evaluation}`);
 
-    if (decision != "ALLOW") {
+    if (evaluation.decision != "ALLOW") {
         return {
             statusCode: 401,
             headers: {
@@ -124,7 +124,7 @@ async function getTemperature(thingName) {
         },
         body: JSON.stringify({
             payload,
-            decision
+            evaluation
         }),
     };
 };

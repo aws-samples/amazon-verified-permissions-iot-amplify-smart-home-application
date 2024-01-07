@@ -111,9 +111,9 @@ const ThermostatList = (props: ThermostatProps) => {
                     .then(data => {
                         console.log(data);
                         // set the appropriate state
-                        handleInputChangeNoElement(data.temperature, index, currentTemperature, setCurrentTemperature);
-                        handleInputChangeNoElement(data.power, index, currentPower, setCurrentPower);
-                        handleInputChangeNoElement(data.mode, index, currentMode, setCurrentMode);
+                        // handleInputChangeNoElement(data.temperature, index, selectedTemperature, setSelectedTemperature);
+                        // handleInputChangeNoElement(data.power, index, currentPower, setCurrentPower);
+                        // handleInputChangeNoElement(data.mode, index, currentMode, setCurrentMode);
                         alert("SetTemperature API called successfully");
                     })
                     .catch(e => {
@@ -146,7 +146,7 @@ const ThermostatList = (props: ThermostatProps) => {
                     .then(data => {
                         console.log(data);
                         // set the appropriate state
-                        handleInputChangeNoElement(data.temperature, index, currentTemperature, setCurrentTemperature);
+                        handleInputChangeNoElement(data.reportedTemperature, index, currentTemperature, setCurrentTemperature);
                         handleInputChangeNoElement(data.power, index, currentPower, setCurrentPower);
                         handleInputChangeNoElement(data.mode, index, currentMode, setCurrentMode);
                         alert("GetTemperature API called successfully");
@@ -161,9 +161,6 @@ const ThermostatList = (props: ThermostatProps) => {
                 console.log(err);
             })
     }
-
-
-
 
     useEffect(() => {
 
@@ -195,18 +192,19 @@ const ThermostatList = (props: ThermostatProps) => {
                         maxWidth="20rem"
                         variation="outlined"
                     >
-                        <Flex display={"flex"} direction={"row"} justifyContent={'center'}>
-                            <Heading
-                                level={2}
-                            >
-                                {currentTemperature}
-                            </Heading>
-                        </Flex>
+                        
                         <Flex display={"flex"} direction={"row"} justifyContent={'center'}>
                             <Heading
                                 level={5}
                             >
                                 {item.deviceId}
+                            </Heading>
+                        </Flex>
+                        <Flex display={"flex"} direction={"row"} justifyContent={'center'}>
+                            <Heading
+                                level={2}
+                            >
+                                {currentTemperature}
                             </Heading>
                         </Flex>
                         <View padding="xs">
@@ -232,8 +230,8 @@ const ThermostatList = (props: ThermostatProps) => {
                                     <option value="Heat">Heat</option>
                                     <option value="Cool">Cool</option>
                                 </SelectField>
-                            </Card>
-
+                            </Card> 
+ 
                             <Card>
                                 <SwitchField
                                     label="Thermostat Power"
@@ -285,7 +283,6 @@ const ThermostatList = (props: ThermostatProps) => {
                                             makeGetTemperatureAPICall(item.deviceId, index)
 
                                         }}
-
                                     >
                                         GetTemperature
                                     </Button>

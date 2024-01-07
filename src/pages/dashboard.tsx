@@ -67,8 +67,7 @@ const Dashboard = (props: DashboardProps) => {
             />
 
             {infoAlert && <Alert
-                isDismissible={false}
-                hasIcon={true}
+                isDismissible={true}
                 heading="Policy evaluation decision"
             >
                 {infoAlert}

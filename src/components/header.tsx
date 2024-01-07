@@ -58,7 +58,7 @@ const Header = (props: HeaderProps ) => {
                 <Heading
                     level={1}
                 >
-                    AWS AVP IoT Demo Dashboard
+                    Amazon Verified Permissions IoT Demo
                 </Heading>
 
             </Card>

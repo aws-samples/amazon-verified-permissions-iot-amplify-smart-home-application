@@ -116,7 +116,7 @@ const ThermostatList = (props: ThermostatProps) => {
                         // handleInputChangeNoElement(data.power, index, currentPower, setCurrentPower);
                         // handleInputChangeNoElement(data.mode, index, currentMode, setCurrentMode);
                         alert("SetTemperature API called successfully");
-                        setAlert(`DECISON: ${data.decision}`);
+                        setAlert(JSON.stringify(data.evaluation, null, 2));
                     })
                     .catch(e => {
                         console.log("Failed to decode JSON");

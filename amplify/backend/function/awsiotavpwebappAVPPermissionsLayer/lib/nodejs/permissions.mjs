@@ -6,11 +6,11 @@ import {
 import { DynamoDBClient, GetItemCommand } from "@aws-sdk/client-dynamodb";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 const TABLE_NAME = "UserMappingTable-dev";
-const REGION = "us-east-1";
+const REGION = "us-west-2";
+const POLICY_STORE_ID = "Y8W3R3sFzQu9XtZQPnNpKp"; //process.env.POLICY_STORE_ID;
 
 const dbClient = new DynamoDBClient({ region: REGION }); // Replace 'aws-region' with your AWS region
 
-const POLICY_STORE_ID = "P44TB9Z3rwaLp56D9WMJcP"; //process.env.POLICY_STORE_ID;
 const client = new VerifiedPermissionsClient({ region: REGION });
 const avp = new VerifiedPermissions(client);
 const entity = (entityType, entityId) => ({
@@ -101,7 +101,7 @@ const permissionsCheck = async (avpPrincipal, action, resource) => {
   try {
     const resp = await avp.isAuthorized(args);
     console.log(`Verified Permissions Output: ${JSON.stringify(resp)}`);
-    return resp.decision;
+    return resp;
   } catch (error) {
     console.error("Error in permissionsCheck:", error);
     return false;

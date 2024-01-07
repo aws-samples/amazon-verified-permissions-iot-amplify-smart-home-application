@@ -6,7 +6,7 @@ import * as jwt from 'jsonwebtoken';
 import {IoTDataPlaneClient, UpdateThingShadowCommand, GetThingShadowCommand} from "@aws-sdk/client-iot-data-plane";
 import * as permissions from '/opt/nodejs/permissions.mjs';  // This comes from custom code in the layer
 
-const REGION = 'us-east-1';
+const REGION = 'us-west-2';
 const client = new IoTDataPlaneClient({region: REGION});
 
 // this function gets data from device shadow using the deviceId
@@ -23,7 +23,7 @@ async function setTemperature(deviceId, temperature, mode, power) {
         }
     };
     const payload = new TextEncoder().encode(JSON.stringify(shadowUpdate));
-    const command = new UpdateThingShadowCommand({
+    const command = new UpdateThingShadowCommand({        
         thingName: deviceId,
         payload: payload
     });
@@ -52,7 +52,7 @@ async function getTemperature(thingName) {
       // The shadow payload is a Uint8Array, so we need to convert it to a string
       // and then parse it as JSON to get a JavaScript object.
       const payload = JSON.parse(new TextDecoder("utf-8").decode(data.payload));
-      return payload;
+      return {reportedTemperature: payload.state.reported.temperature};
     } catch (error) {
       console.error(`Failed to retrieve shadow for ${thingName}:`, error);
       return null;
@@ -85,7 +85,6 @@ async function getTemperature(thingName) {
             }
         }
     };
-
 
     const decision = await permissions.permissionsCheck(decoded.payload.username, action, shadow);
     console.log(`Decision: ${decision}`);
@@ -123,6 +122,9 @@ async function getTemperature(thingName) {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Headers": "*"
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+            payload,
+            decision
+        }),
     };
 };

@@ -1,14 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
     Flex,
     Grid,
+    Alert,
 } from "@aws-amplify/ui-react";
 import ThermostatList from "../components/thermostatList";
 import Header from "../components/header";
 import CurrentValues from "../components/currentValues";
-import {Auth} from "@aws-amplify/auth"
+import { Auth } from "@aws-amplify/auth"
 
-const {REACT_APP_API_URI} = process.env;
+const { REACT_APP_API_URI } = process.env;
 
 interface DashboardProps {
 }
@@ -16,6 +17,7 @@ interface DashboardProps {
 const Dashboard = (props: DashboardProps) => {
 
     const [items, setItems] = React.useState([]);
+    const [infoAlert, setInfoAlert] = React.useState("");
 
     useEffect(() => {
         Auth.currentSession()
@@ -39,9 +41,9 @@ const Dashboard = (props: DashboardProps) => {
                                 })
                                 .catch(e => {
 
-                                        console.log("Unable to decode JSON")
-                                        console.log(e);
-                                    }
+                                    console.log("Unable to decode JSON")
+                                    console.log(e);
+                                }
                                 ))
                     .catch(e => {
                         console.log("Unable to get items")
@@ -64,6 +66,14 @@ const Dashboard = (props: DashboardProps) => {
                 username={"primaryOwner"}
             />
 
+            {infoAlert && <Alert
+                isDismissible={false}
+                hasIcon={true}
+                heading="Policy evaluation decision"
+            >
+                {infoAlert}
+            </Alert> }
+
             <Flex
                 direction="row"
                 wrap="nowrap"
@@ -72,11 +82,12 @@ const Dashboard = (props: DashboardProps) => {
             >
                 <Flex direction={"row"}>
                     <ThermostatList
+                        setAlert={setInfoAlert}
                         items={items}
                     />
                 </Flex>
 
-                <CurrentValues/>
+                <CurrentValues />
 
             </Flex>
 

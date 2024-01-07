@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {Dispatch, useEffect, useState} from "react";
 
 import {
     Button,
@@ -25,6 +25,7 @@ export type ThermostatItem = {
 
 export type ThermostatProps = {
     readonly items: ThermostatItem[];
+    setAlert: Dispatch<React.SetStateAction<string>>
 };
 
 
@@ -82,7 +83,7 @@ const ThermostatList = (props: ThermostatProps) => {
         globalTimeMeridiem,
     } = useGlobal();
 
-    const {items} = props;
+    const {items, setAlert} = props;
     const [selectedTemperature, setSelectedTemperature] = useState<number[]>([0]);
     const [currentTemperature, setCurrentTemperature] = useState<number[]>([0]);
     const [currentMode, setCurrentMode] = useState<string[]>(["Auto"]);
@@ -115,6 +116,7 @@ const ThermostatList = (props: ThermostatProps) => {
                         // handleInputChangeNoElement(data.power, index, currentPower, setCurrentPower);
                         // handleInputChangeNoElement(data.mode, index, currentMode, setCurrentMode);
                         alert("SetTemperature API called successfully");
+                        setAlert(`DECISON: ${data.decision}`);
                     })
                     .catch(e => {
                         console.log("Failed to decode JSON");
@@ -149,7 +151,7 @@ const ThermostatList = (props: ThermostatProps) => {
                         handleInputChangeNoElement(data.reportedTemperature, index, currentTemperature, setCurrentTemperature);
                         handleInputChangeNoElement(data.power, index, currentPower, setCurrentPower);
                         handleInputChangeNoElement(data.mode, index, currentMode, setCurrentMode);
-                        alert("GetTemperature API called successfully");
+                        alert(`GetTemperature API called successfully`);
                     })
                     .catch(e => {
                         console.log("Failed to decode JSON");

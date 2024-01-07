@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
     Flex,
     Grid,
+    Card,
     Alert,
 } from "@aws-amplify/ui-react";
 import ThermostatList from "../components/thermostatList";
@@ -62,23 +63,24 @@ const Dashboard = (props: DashboardProps) => {
             columnGap="0.5rem"
             rowGap="0.5rem"
         >
+        
             <Header
                 username={"primaryOwner"}
             />
 
             {infoAlert && <Alert
-                isDismissible={true}
-                heading="Policy evaluation decision"
-            >
-                {infoAlert}
-            </Alert> }
+                    isDismissible={true}
+                    heading="Policy evaluation decision"
+                    >
+                    {infoAlert}
+                </Alert>}
 
             <Flex
                 direction="row"
                 wrap="nowrap"
                 justifyContent={"space-between"}
                 gap="1rem"
-            >
+            >                
                 <Flex direction={"row"}>
                     <ThermostatList
                         setAlert={setInfoAlert}

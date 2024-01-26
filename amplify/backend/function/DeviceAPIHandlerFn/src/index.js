@@ -6,7 +6,7 @@ import * as jwt from 'jsonwebtoken';
 import {IoTDataPlaneClient, UpdateThingShadowCommand, GetThingShadowCommand} from "@aws-sdk/client-iot-data-plane";
 import * as permissions from '/opt/nodejs/permissions.mjs';  // This comes from custom code in the layer
 
-const REGION = 'us-west-2';
+const REGION = 'us-east-1';
 const client = new IoTDataPlaneClient({region: REGION});
 
 // this function gets data from device shadow using the deviceId
@@ -71,7 +71,7 @@ async function getTemperature(thingName) {
     // get deviceId from path parameters
     const deviceId = event.pathParameters.deviceId;
     // get action and other parameters from post body
-    const { action, temperature, deviceMode, power } = JSON.parse(event.body);
+    const { action, temperature, deviceMode, power, globalTime } = JSON.parse(event.body);
     console.log(`ACTION: ${JSON.stringify(action)}`);
     console.log(deviceId);
 
@@ -81,7 +81,8 @@ async function getTemperature(thingName) {
             desired: {
                 temperature: temperature,
                 mode: deviceMode,
-                power: power
+                power: power,
+                time: globalTime
             }
         }
     };

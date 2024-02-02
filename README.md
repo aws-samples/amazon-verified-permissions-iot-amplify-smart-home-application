@@ -209,7 +209,7 @@ As we are creating AWS Cloud9 environment to represent a virtual IoT device:
 
 
 ### Simulate the IoT device 
-1.	Upload connect_device_package.zip to your Cloud9 environment. Run the following commands in the Cloud9 CLI. 
+1. Upload connect_device_package.zip to your Cloud9 environment. Run the following commands in the Cloud9 CLI. 
 2. unzip connect_device_package.zip
 3. chmod +x start.sh
 4. ./start.sh (to run the start script) 

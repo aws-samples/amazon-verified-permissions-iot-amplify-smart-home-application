@@ -1,14 +1,33 @@
 #!/bin/bash
 
-# Assign the first and second argument to variables
 region=$1
 policy_store_id=$2
+checkpoint_file=".deploy_checkpoint"
 
 # Validate input
 if [[ -z "$region" || -z "$policy_store_id" ]]; then
   echo "Usage: $0 <region> <policy_store_id>"
   exit 1
 fi
+
+# Function to update checkpoint
+update_checkpoint() {
+  echo "$1" > "$checkpoint_file"
+}
+
+# Function to check if a step has been completed
+has_completed() {
+  [[ -f "$checkpoint_file" ]] && grep -q "$1" "$checkpoint_file"
+}
+
+
+# Checkpoint names for each step
+init_checkpoint="amplify_init_completed"
+push_checkpoint="amplify_push_completed"
+install_checkpoint="npm_install_completed"
+publish_checkpoint="amplify_publish_completed"
+add_device_checkpoint="add_device_completed"
+
 
 # File paths (update these paths to your actual file locations)
 file1_path="amplify/backend/function/ItemsAPIHandlerFn/src/index.js"
@@ -30,12 +49,31 @@ echo "Updated $file3_path"
 
 echo "Variables updated successfully..."
 
-echo "Initializing Amplify project"
-amplify init
+# Run steps with checkpoints
+if ! has_completed $init_checkpoint; then
+  echo "Initializing Amplify project"
+  amplify init && update_checkpoint $init_checkpoint
+fi
 
-echo "Pushing backend to the cloud"
-amplify push -y
+if ! has_completed $push_checkpoint; then
+  echo "Pushing backend to the cloud"
+  amplify push -y && update_checkpoint $push_checkpoint
+fi
 
-echo "Publishing frontend application"
-amplify publish -y
+if ! has_completed $install_checkpoint; then
+  echo "Installing project dependencies"
+  npm install && update_checkpoint $install_checkpoint
+fi
+
+if ! has_completed $publish_checkpoint; then
+  echo "Publishing frontend application"
+  amplify publish -y && update_checkpoint $publish_checkpoint
+fi
+
+if ! has_completed $add_device_checkpoint; then
+  echo "Adding device to user relationships"
+  aws dynamodb batch-write-item --request-items file://users.json --region $region && update_checkpoint $add_device_checkpoint
+fi
+
+echo "Deployment completed successfully."
 

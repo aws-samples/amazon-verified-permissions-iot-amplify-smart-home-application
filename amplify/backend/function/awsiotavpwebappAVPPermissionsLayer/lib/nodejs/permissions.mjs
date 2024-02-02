@@ -6,8 +6,8 @@ import {
 import { DynamoDBClient, GetItemCommand } from "@aws-sdk/client-dynamodb";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 const TABLE_NAME = "UserMappingTable-dev";
-const REGION = "us-west-2";
-const POLICY_STORE_ID = "Y8W3R3sFzQu9XtZQPnNpKp"; //process.env.POLICY_STORE_ID;
+const REGION = "us-east-1";
+const POLICY_STORE_ID = "P44TB9Z3rwaLp56D9WMJcP"; //process.env.POLICY_STORE_ID;
 
 const dbClient = new DynamoDBClient({ region: REGION }); // Replace 'aws-region' with your AWS region
 
@@ -48,6 +48,7 @@ const permissionsCheck = async (avpPrincipal, action, resource) => {
     resource: entity("Device", resource.deviceId),
   };
 
+  console.log(`Resource: ${JSON.stringify(resource)}`);
   console.log(`Args: ${JSON.stringify(args)}`);
 
   //Get from the Db
@@ -79,7 +80,7 @@ const permissionsCheck = async (avpPrincipal, action, resource) => {
     resource.state.desired &&
     resource.state.desired.time !== undefined
   ) {
-    args.context.contextMap.time = { long: resource.state.desired.time };
+    args.context.contextMap.time = { long: getElapsedMinutes(resource.state.desired.time) };
   }
 
   // Update args.entities
@@ -92,13 +93,9 @@ const permissionsCheck = async (avpPrincipal, action, resource) => {
     ],
   };
 
-  args.context = {
-    contextMap: {
-      desiredTemperature: { long: 75 },
-      time: { long: 850 },
-    },
-  };
+
   try {
+    console.log(`Args before executing Verified Permissions: ${JSON.stringify(args)}`);
     const resp = await avp.isAuthorized(args);
     console.log(`Verified Permissions Output: ${JSON.stringify(resp)}`);
     return resp;
@@ -107,6 +104,26 @@ const permissionsCheck = async (avpPrincipal, action, resource) => {
     return false;
   }
 };
+
+function getElapsedMinutes(timeString) {
+  // Extract hours and minutes from the time string
+  const [time, modifier] = timeString.split(' ');
+  let [hours, minutes] = time.split(':');
+
+  // Convert hours to numbers
+  hours = parseInt(hours, 10);
+  minutes = parseInt(minutes, 10);
+
+  // Convert to 24-hour format if PM
+  if (modifier === 'PM' && hours !== 12) {
+      hours += 12;
+  } else if (modifier === 'AM' && hours === 12) {
+      hours = 0;
+  }
+
+  // Calculate total minutes from midnight
+  return hours * 60 + minutes;
+}
 
 async function getItemById(id) {
   const params = {

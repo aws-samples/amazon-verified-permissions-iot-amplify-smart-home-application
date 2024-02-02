@@ -219,7 +219,34 @@ As we are creating AWS Cloud9 environment to represent a virtual IoT device:
 This will start sending data to the AWS Iot Core service. This is a quick and easy way to test that your device is sending data via MQTT.
 
 
-Once the start script runs, it starts to publish “Hello World!” message to sdk/test/python MQTT Topic
+Once the start script runs, it starts to publish “Hello World!” message to sdk/test/python MQTT Topic. This is a successful test of communication.
+
+We will now update the certificates of the IoT device to allow all Shadow operations. Head to the AWS IoT Core dashboard and select the IoT thing you've created under Manage > All Devices > Things. Head to the Certificates tab and click on the active certificate.
+
+![iot-cert](images%2Fiot-cert.png)
+
+
+Click on the policy and edit the version and update it in JSON format to reflect the following
+
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "iot:*",
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+This policy will allow us broad permissions on the device. For the sake of showcasing the capability we are permitting all operations. In production, please scope down the policy as needed based on [this documentation](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policy-actions.html)
+
+Once the policy is updated don't forget to activate the new version. This will now allow us to update the shadow for the device. 
+
+We have already provided the code for the AWS IoT Shadow update in this repository.
 
 
 Next we need to figure out the endpoint which we will use to communicate with AWS Iot Core. Use the following command
@@ -227,7 +254,12 @@ Next we need to figure out the endpoint which we will use to communicate with AW
 `aws iot describe-endpoint --endpoint-type iot:Data-ATS`
 
 
+
+
+
 Note: Deploying Thermostat application in your AWS account will incur costs. When you are finished examining the example, follow the steps in the Clean Up section to delete the infrastructure and stop incurring charges.
+
+
 
 
 ## Clean Up

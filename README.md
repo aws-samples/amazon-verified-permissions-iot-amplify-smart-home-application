@@ -198,13 +198,13 @@ Once you've created an IoT device and have the connection kit (that includes the
 
 As we are creating AWS Cloud9 environment to represent a virtual IoT device: 
 
-Enter name of your environment, select New EC2 instance for Environment type and select t2.micro for instance type
+### Enter name of your environment, select New EC2 instance for Environment type and select t2.micro for instance type
 ![cloud-9-1](images%2Fcloud9-1.png)
 
-Select AWS Systems Manager as Network settings and click create
+### Select AWS Systems Manager as Network settings and click create
 ![cloud-9-2](images%2Fcloud9-2.png)
 
-f. Once the environment is ready, click on open
+### Once the environment is ready, click on open
 ![cloud-9-3](images%2Fcloud9-3.png)
 
 
@@ -220,6 +220,14 @@ This will start sending data to the AWS Iot Core service. This is a quick and ea
 
 
 Once the start script runs, it starts to publish “Hello World!” message to sdk/test/python MQTT Topic
+
+
+Next we need to figure out the endpoint which we will use to communicate with AWS Iot Core. Use the following command
+
+`aws iot describe-endpoint --endpoint-type iot:Data-ATS`
+
+
+Note: Deploying Thermostat application in your AWS account will incur costs. When you are finished examining the example, follow the steps in the Clean Up section to delete the infrastructure and stop incurring charges.
 
 
 ## Clean Up

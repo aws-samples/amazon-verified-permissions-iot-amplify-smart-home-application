@@ -197,26 +197,24 @@ to device.
 Once you've created an IoT device and have the connection kit (that includes the certificates and other quick start scripts), head to Cloud 9 and spin up a new environment. This environment will be used to simulate the IoT device. You can also choose to do this on your local machine. 
 
 As we are creating AWS Cloud9 environment to represent a virtual IoT device: 
-a. Enter Name
-b. Select New EC2 instance for Environment type
-c. Select t2.micro for Instance type
-d. Select AWS Systems Manager as Network settings
-e. Click create
 
+Enter name of your environment, select New EC2 instance for Environment type and select t2.micro for instance type
 ![cloud-9-1](images%2Fcloud9-1.png)
 
+Select AWS Systems Manager as Network settings and click create
 ![cloud-9-2](images%2Fcloud9-2.png)
 
 f. Once the environment is ready, click on open
-
 ![cloud-9-3](images%2Fcloud9-3.png)
 
 
-Now, to start the IoT device 
+### Simulate the IoT device 
 1.	Upload connect_device_package.zip to your Cloud9 environment. Run the following commands in the Cloud9 CLI. 
 2. unzip connect_device_package.zip
 3. chmod +x start.sh
 4. ./start.sh (to run the start script) 
+
+![cloud-9-iot-1](images%2Fcloud9-iot-1.png)
 
 This will start sending data to the AWS Iot Core service. This is a quick and easy way to test that your device is sending data via MQTT.
 

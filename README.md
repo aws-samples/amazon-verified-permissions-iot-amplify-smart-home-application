@@ -157,13 +157,17 @@ to device.
 
 Finally, once the provisioning process is complete, you’ll see the URL for the provisioned Rest API. Grab the Rest API endpoint
 URL and go to the root directory of the project. Here, we’ll modify the .env file (create the .env file if it does not exist). Add
-the URL of our Rest API to this file with the variable `REACT_APP_API_URI`
+the URL of our Rest API to this file with the variable `REACT_APP_API_URI`. You can get this Rest API URL by issuing the command `amplify status`
 
 ![restapi-url.jpg](images%2Frestapi-url.jpg)
 
 `REACT_APP_API_URI=https://<custom url here>.execute-api.us-east-2.amazonaws.com/dev`
 
-The .env file will be at the same level as the package.json file and amplify directory
+The .env file will be at the same level as the package.json file and amplify directory.
+
+Finally, after updating .env file, re-publish the REACT app
+
+`amplify publish`
 
 
 ## 3. User management

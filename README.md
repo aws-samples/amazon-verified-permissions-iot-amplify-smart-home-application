@@ -82,16 +82,6 @@ Notice that it warns us about IAM permissions on all resources, we’re doing th
 use-cases we highly recommend following the principle of least privileges as mentioned in our [security best
 practices](https://docs.aws.amazon.com/wellarchitected/latest/framework/sec_permissions_least_privileges.html).
 
-Once the provisioning process is complete. You’ll see the URL for the provisioned Rest API. Grab the Rest API endpoint
-URL and go
-to the root directory of the project. Here, we’ll modify the .env file (create the .env file if it does not exist). Add
-the URL of our Rest API to this file with the variable `REACT_APP_API_URI`
-
-![restapi-url.jpg](images%2Frestapi-url.jpg)
-
-`REACT_APP_API_URI=https://<custom url here>.execute-api.us-east-2.amazonaws.com/dev`
-
-The .env file will be at the same level as the package.json file and amplify directory
 
 Next, we need to install all the packages listed in package.json file. This will be as easy as running `npm install` in
 the root directory. Once the packages are installed, we can just go to the next step to publish the frontend.
@@ -103,7 +93,6 @@ The frontend gets published to Amplify Hosting via a separate command
 This will reveal the public hosting URL for the Amplify application
 
 Executing amplify hosting status will also give the deployed URL for the application if we need it later.
-
 
 At this point, we’re going to add all three users and their device mappings into our DynamoDB table. Navigate to the
 root of your project and check users.json file which should have the following code in there. Notice the first key in
@@ -164,8 +153,20 @@ on a link to sign-up their role information is supplied either through the URL o
 to role mapping table”. Upon sign-up and confirmation, a new record is created in the table which has a mapping of user
 to device.
 
+## 2. Setup API url in the .env file
 
-## 2. User management
+Finally, once the provisioning process is complete, you’ll see the URL for the provisioned Rest API. Grab the Rest API endpoint
+URL and go to the root directory of the project. Here, we’ll modify the .env file (create the .env file if it does not exist). Add
+the URL of our Rest API to this file with the variable `REACT_APP_API_URI`
+
+![restapi-url.jpg](images%2Frestapi-url.jpg)
+
+`REACT_APP_API_URI=https://<custom url here>.execute-api.us-east-2.amazonaws.com/dev`
+
+The .env file will be at the same level as the package.json file and amplify directory
+
+
+## 3. User management
 
 At this point our application is published and provisioned in the cloud. We're now going to add users to our
 application for which we've already created relationships in your DynamoDB table.
@@ -212,7 +213,7 @@ Here's a screenshot showing how you can do that in the "User Management" section
 ![create-user.png](images%2Fcreate-user.png)
 
 
-## 3. Simulating IoT Device in a AWS Cloud 9 Environment
+## 4. Simulating IoT Device in a AWS Cloud 9 Environment
 
 Once you've created an IoT device and have the connection kit (that includes the certificates and other quick start scripts), head to Cloud 9 and spin up a new environment. This environment will be used to simulate the IoT device. You can also choose to do this on your local machine. 
 

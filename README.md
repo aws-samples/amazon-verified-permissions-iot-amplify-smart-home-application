@@ -156,7 +156,7 @@ the Amplify environment we’re operating in. For more information on this topic
 Insert this data into your provisioned table by executing the following command in the root of your project directory.
 This command assumes you have a default region set in your profile or environment variables.
 
-`aws dynamodb batch-write-item --request-items file://users.json --region us-east-2 `
+`aws dynamodb batch-write-item --request-items file://users.json --region <region> `
 
 In practice, this process will be automated through the invite and sign-up system. After a device owner claims a device,
 they can invite a person to join their home or application and choose the role at invitation. So, when a new user clicks

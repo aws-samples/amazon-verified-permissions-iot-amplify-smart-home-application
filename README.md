@@ -38,8 +38,26 @@ Clone the repository by using this command:
 
 `git clone https://github.com/aws-samples/amazon-verified-permissions-iot-amplify-smart-home-application.git`
 
+
+## 1. Amplify Application Deployment
+
+### Quick Deployment
+
+To make deployment easier, we've provided you with a helper deployment script which will setup the Amplify application.
+
+`Usage: ./deploy.sh <region> <Amazon Verified Permissions PolicyID>`
+
+If you're using AWS profile as your authentication mechanism, please make sure the region provided to deploy.sh matches the default region of the profile. 
+
+
+
+### Manual Deployment 
+
+You don't need to follow this step if you're already using Quick Deployment
+
 Next, navigate to the root of the project directory (also referred to as the parent directory) and execute the command
 to initialize the Amplify application
+
 
 `amplify init`
 
@@ -86,51 +104,6 @@ This will reveal the public hosting URL for the Amplify application
 
 Executing amplify hosting status will also give the deployed URL for the application if we need it later.
 
-## User management
-
-At this point our application is published and provisioned in the cloud. We're now going to add users to our
-application.
-
-Navigate to the Amplify console in your chosen region. You should see the project is already published.
-
-![amplify-apps.png](images%2Famplify-apps.png)
-
-Click on the awsiotavpwebapp and navigate to the Backend environment and click lick on the button that says Set up
-Amplify Studio
-
-![amplify-backend.png](images%2Famplify-backend.png)
-
-This will take you to the Amplify Studio Settings page as shown below. Enable Amplify Studio using the sliding button
-from Off to On.
-
-![amplify-studio.png](images%2Famplify-studio.png)
-
-Note: You’ll see “Invite Users” on the same page after you turn on Studio. This screen lets you invite users to access
-Amplify Studio. This is not where you add users for your application. We will do that in the next step.
-
-Navigate back to the Backend environments as shown in the screenshot below. You’ll now see the highlighted button
-“Launch Studio”. This will open a new tab/pop-up. (Check your browser pop-up preferences if a new window doesn’t open)
-
-![launch-studio-button.png](images%2Flaunch-studio-button.png)
-
-Next head to “User Management” as shown in the screenshot below. Here we’ll add three new users. This action for
-creating three users - the device owner will have username “john_doe” and a unique email.
-
-![amplify-user-management.png](images%2Famplify-user-management.png)
-
-We'll add the following three users with the usernames and add the mapping to our DynamoDB table.
-
-| Resource    | Username     | 
-|-------------|--------------|
-| Thermostat1 | john_doe     |
-| Thermostat1 | jane_doe     |
-| Thermostat1 | powercompany |
-| Thermostat2 | jane_doe     |
-| Thermostat2 | powercompany |
-
-Here's a screenshot showing how you can do that in the "User Management" section of the Amplify Dashboard
-
-![create-user.png](images%2Fcreate-user.png)
 
 At this point, we’re going to add all three users and their device mappings into our DynamoDB table. Navigate to the
 root of your project and check users.json file which should have the following code in there. Notice the first key in
@@ -192,7 +165,54 @@ to role mapping table”. Upon sign-up and confirmation, a new record is created
 to device.
 
 
-## Simulating IoT Device in a AWS Cloud 9 Environment
+## 2. User management
+
+At this point our application is published and provisioned in the cloud. We're now going to add users to our
+application for which we've already created relationships in your DynamoDB table.
+
+Navigate to the Amplify console in your chosen region. You should see the project is already published.
+
+![amplify-apps.png](images%2Famplify-apps.png)
+
+Click on the awsiotavpwebapp and navigate to the Backend environment and click lick on the button that says Set up
+Amplify Studio
+
+![amplify-backend.png](images%2Famplify-backend.png)
+
+This will take you to the Amplify Studio Settings page as shown below. Enable Amplify Studio using the sliding button
+from Off to On.
+
+![amplify-studio.png](images%2Famplify-studio.png)
+
+Note: You’ll see “Invite Users” on the same page after you turn on Studio. This screen lets you invite users to access
+Amplify Studio. This is not where you add users for your application. We will do that in the next step.
+
+Navigate back to the Backend environments as shown in the screenshot below. You’ll now see the highlighted button
+“Launch Studio”. This will open a new tab/pop-up. (Check your browser pop-up preferences if a new window doesn’t open)
+
+![launch-studio-button.png](images%2Flaunch-studio-button.png)
+
+Next head to “User Management” as shown in the screenshot below. Here we’ll add three new users. This action for
+creating three users - the device owner will have username “john_doe” and a unique email.
+
+![amplify-user-management.png](images%2Famplify-user-management.png)
+
+We'll add the following three users with the usernames.
+
+| Resource    | Username     | 
+|-------------|--------------|
+| Thermostat1 | john_doe     |
+| Thermostat1 | jane_doe     |
+| Thermostat1 | powercompany |
+| Thermostat2 | jane_doe     |
+| Thermostat2 | powercompany |
+
+Here's a screenshot showing how you can do that in the "User Management" section of the Amplify Dashboard
+
+![create-user.png](images%2Fcreate-user.png)
+
+
+## 3. Simulating IoT Device in a AWS Cloud 9 Environment
 
 Once you've created an IoT device and have the connection kit (that includes the certificates and other quick start scripts), head to Cloud 9 and spin up a new environment. This environment will be used to simulate the IoT device. You can also choose to do this on your local machine. 
 

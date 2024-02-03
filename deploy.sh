@@ -4,11 +4,14 @@ region=$1
 policy_store_id=$2
 checkpoint_file=".deploy_checkpoint"
 
+
 # Validate input
 if [[ -z "$region" || -z "$policy_store_id" ]]; then
   echo "Usage: $0 <region> <policy_store_id>"
   exit 1
 fi
+
+export AWS_DEFAULT_REGION=$region
 
 # Function to update checkpoint
 update_checkpoint() {
@@ -20,14 +23,12 @@ has_completed() {
   [[ -f "$checkpoint_file" ]] && grep -q "$1" "$checkpoint_file"
 }
 
-
 # Checkpoint names for each step
 init_checkpoint="amplify_init_completed"
 push_checkpoint="amplify_push_completed"
 install_checkpoint="npm_install_completed"
 publish_checkpoint="amplify_publish_completed"
 add_device_checkpoint="add_device_completed"
-
 
 # File paths (update these paths to your actual file locations)
 file1_path="amplify/backend/function/ItemsAPIHandlerFn/src/index.js"

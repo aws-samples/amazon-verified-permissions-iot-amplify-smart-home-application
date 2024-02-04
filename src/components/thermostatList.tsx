@@ -116,7 +116,7 @@ const ThermostatList = (props: ThermostatProps) => {
                         // handleInputChangeNoElement(data.temperature, index, selectedTemperature, setSelectedTemperature);
                         // handleInputChangeNoElement(data.power, index, currentPower, setCurrentPower);
                         // handleInputChangeNoElement(data.mode, index, currentMode, setCurrentMode);
-                        alert("SetTemperature API called successfully");
+                        // alert("SetTemperature API called successfully");
                         setAlert(JSON.stringify(data.evaluation, null, 2));
                     })
                     .catch(e => {
@@ -152,7 +152,7 @@ const ThermostatList = (props: ThermostatProps) => {
                         handleInputChangeNoElement(data.payload.reportedTemperature, index, currentTemperature, setCurrentTemperature);
                         handleInputChangeNoElement(data.payload.power, index, currentPower, setCurrentPower);
                         handleInputChangeNoElement(data.payload.mode, index, currentMode, setCurrentMode);
-                        alert(`GetTemperature API called successfully`);
+                        // alert(`GetTemperature API called successfully`);
                         setAlert(JSON.stringify(data.evaluation, null, 2));
                     })
                     .catch(e => {

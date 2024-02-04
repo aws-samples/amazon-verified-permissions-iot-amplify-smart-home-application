@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
     Flex,
     Grid,
-    Card,
     Alert,
 } from "@aws-amplify/ui-react";
 import ThermostatList from "../components/thermostatList";

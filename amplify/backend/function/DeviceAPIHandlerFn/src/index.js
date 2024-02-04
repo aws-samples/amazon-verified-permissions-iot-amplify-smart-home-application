@@ -90,18 +90,22 @@ async function getTemperature(thingName) {
     const evaluation = await permissions.permissionsCheck(decoded.payload.username, action, shadow);
     console.log(`Decision: ${evaluation}`);
 
+    let payload;
     if (evaluation.decision != "ALLOW") {
         return {
-            statusCode: 401,
+            statusCode: 403,
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers": "*"
             },
-            body: JSON.stringify('Amazon verified permission unauthorized!'),
+            body: JSON.stringify({
+                payload: 'Amazon verified permission unauthorized!',
+                evaluation
+            }),
         };
     }
 
-    let payload;
+    
     if (action === 'SetTemperature') {
         payload = setTemperature(deviceId, temperature, deviceMode, power);
     } else if (action === 'GetTemperature') {

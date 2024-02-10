@@ -6,7 +6,7 @@ Thermostat applications".
 ## Description:
 
 
-[!IMPORTANT]
+> [!IMPORTANT]
 > Deploying the Thermostat application in your AWS account will incur costs. When you are finished examining the example, follow the steps in the Clean Up section to delete the infrastructure and stop incurring charges.
 
 This is an AWS Amplify application that deploys a demo IoT device dashboard. The frontend for this application has been
@@ -33,7 +33,7 @@ dashboard, you’ll be able to see how different API calls can be authorized for
 to tweak different variables like current time to see how different users can interact with different parts of the
 dashboard.
 
-[!IMPORTANT]
+> [!IMPORTANT]
 > Please create the policies in Amazon Verified Permissions before proceeding to deployment.
 
 Clone the repository by using this command:

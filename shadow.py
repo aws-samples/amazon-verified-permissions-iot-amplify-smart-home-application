@@ -17,7 +17,7 @@ mqtt_connection = None
 shadow_thing_name = cmdData.input_thing_name
 shadow_property = cmdData.input_shadow_property
 
-SHADOW_VALUE_DEFAULT = "off"
+SHADOW_VALUE_DEFAULT = 82
 
 
 class LockedData:

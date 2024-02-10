@@ -275,6 +275,13 @@ Once the policy is updated don't forget to mark the new policy version as active
 
 We have already provided the code for the AWS IoT Shadow update in this repository. Move the file `shadow.py` from this respository into the cloned samples repository on the Cloud9 instance. The folder path is `aws-iot-device-sdk-python-v2/samples/shadow.py`. 
 
+Now modify the start.sh script so that it can invoke the shadow.py script we just updated. Keep track of the endpoint already in the script as it is specific to your account.
+
+```
+python3 aws-iot-device-sdk-python-v2/samples/shadow.py --endpoint <use your existing endpoint in the script> --ca_file root-CA.crt --cert Thermostat1.cert.pem --key Thermostat1.private.key --thing_name Thermostat1 --shadow_property temperature
+```
+
+This will simulate the device which will respond once it receives a shadow update. When the device is started, the default temperature is set to 82. 
 
 
 ## Clean Up

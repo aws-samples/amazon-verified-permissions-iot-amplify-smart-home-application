@@ -5,8 +5,9 @@ Thermostat applications".
 
 ## Description:
 
-Note: You will need the policy store ID from Amazon Verified Permissions to successfully call the permissions function.
-Please follow the instructions on the blog before attempting to deploy this dashboard.
+
+[!IMPORTANT]
+> Deploying the Thermostat application in your AWS account will incur costs. When you are finished examining the example, follow the steps in the Clean Up section to delete the infrastructure and stop incurring charges.
 
 This is an AWS Amplify application that deploys a demo IoT device dashboard. The frontend for this application has been
 built using React JS and the backed is hosted on AWS using AWS Amplify.
@@ -32,7 +33,8 @@ dashboard, you’ll be able to see how different API calls can be authorized for
 to tweak different variables like current time to see how different users can interact with different parts of the
 dashboard.
 
-Please create the policies in Amazon Verified Permissions before proceeding to deployment.
+[!IMPORTANT]
+> Please create the policies in Amazon Verified Permissions before proceeding to deployment.
 
 Clone the repository by using this command:
 
@@ -269,21 +271,9 @@ Click on the policy and edit the version and update it in JSON format to reflect
 
 This policy will allow us broad permissions on the device. For the sake of showcasing the capability we are permitting all operations. In production, please scope down the policy as needed based on [this documentation](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policy-actions.html)
 
-Once the policy is updated don't forget to activate the new version. This will now allow us to update the shadow for the device. 
+Once the policy is updated don't forget to mark the new policy version as active. This will now allow us to update the shadow for the device. 
 
-We have already provided the code for the AWS IoT Shadow update in this repository.
-
-
-Next we need to figure out the endpoint which we will use to communicate with AWS Iot Core. Use the following command
-
-`aws iot describe-endpoint --endpoint-type iot:Data-ATS`
-
-
-
-
-
-Note: Deploying Thermostat application in your AWS account will incur costs. When you are finished examining the example, follow the steps in the Clean Up section to delete the infrastructure and stop incurring charges.
-
+We have already provided the code for the AWS IoT Shadow update in this repository. Move the file `shadow.py` from this respository into the cloned samples repository on the Cloud9 instance. The folder path is `aws-iot-device-sdk-python-v2/samples/shadow.py`. 
 
 
 

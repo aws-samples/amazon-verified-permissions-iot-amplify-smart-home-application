@@ -286,7 +286,7 @@ This will simulate the device which will respond once it receives a shadow updat
 
 ## Clean Up
 
-Delete the CloudFormation stack on AWS console in the selected region.
+Delete the CloudFormation stack created by Amplify and Cloud9 on AWS console in the selected region. 
 
 ## Security
 

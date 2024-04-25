@@ -1,7 +1,6 @@
 # AWS IoT Amazon Verified Permissions Dashboard Demo
 
-This code accompanies the blog post "Leveraging Amazon Verified Permissions for managing authorization for AWS IoT Smart
-Thermostat applications".
+This code accompanies the blog post "[Using Amazon Verified Permissions to manage authorization for AWS IoT smart home applications](https://aws.amazon.com/blogs/security/using-amazon-verified-permissions-to-manage-authorization-for-aws-iot-smart-thermostat-applications/)".
 
 ## Description:
 
